@@ -4,6 +4,8 @@
 
 -   Always refer to this file for announcements and reminders
 -   Remember to write meaningful and descriptive commit messages
+-   Always check your directory
+-   Always check the branch you're working
 
 # Basic Git Commands
 
@@ -17,3 +19,10 @@
     - git branch branchname (creates new branch)
     - git checkout branchname (switch to a branch)
     - git push origin branchname (if you want to push your changes inside the branch)
+
+# Branches
+
+    - main(main branch, push final output in main branch (production phase))
+    - test(for system testing)
+    - frontend(for frontend development)
+    - backend(for backend development)
