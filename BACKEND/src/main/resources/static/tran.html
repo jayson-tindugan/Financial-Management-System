@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction Form</title>
+</head>
+<body>
+
+<form action="/transaction/save" method="post">
+
+
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" required/>
+    <br>
+
+    <label for="allocationType">Allocation Type:</label>
+    <select ID="allocationType" name="allocationType">Allocation type
+    <option value="IGP">IGP</option>
+        <option value="COH">COH</option>
+    </select>
+        <br>
+
+    <label for="transactionType">Transaction Type:</label>
+    <select ID="transactionType" name="transactionType">Allocation type
+        <option value="WITHDRAW">Withdraw</option>
+        <option value="DEPOSIT">Deposit</option>
+    </select>
+    <br>
+
+    <label for="transactionDate">Transaction Date:</label>
+    <input type="date" id="transactionDate" name="transactionDate" required/>
+    <br>
+
+    <label for="remark">Remark:</label>
+    <input type="text" id="remark" name="remark"/>
+    <br>
+
+    <!-- Associated User -->
+
+    <br>
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
