@@ -131,6 +131,10 @@ public class TransactionService {
             throw new RuntimeException("Error retrieving SM transactions", e);
         }
     }
+    public List<TransactionModel> getAllTransactions() {
+        return transactionRepository.findAll();
+    }
+
 
 
 }

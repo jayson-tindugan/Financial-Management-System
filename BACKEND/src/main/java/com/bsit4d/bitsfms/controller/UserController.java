@@ -9,6 +9,7 @@ import com.bsit4d.bitsfms.model.UserModel;
 //import com.bsit4d.bitsfms.service.UserService;
 
 import com.bsit4d.bitsfms.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -31,7 +36,7 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping("/dashboard")
+    @GetMapping("/logged-in-details")
     public ResponseEntity<Object> getMyDetails(){
         return new ResponseEntity(userService.loginUser(),HttpStatus.OK);
     }
@@ -43,7 +48,7 @@ public class UserController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/getAll")
+    @GetMapping("/user-list")
     public ResponseEntity getAll() {
         return new ResponseEntity(userService.getAllUsers(), HttpStatus.OK);
     }
@@ -54,12 +59,12 @@ public class UserController {
         return new ResponseEntity(userService.findDetails(idNumber),HttpStatus.OK);
     }
 
-    @GetMapping("/getId/{idNumber}")
+    @GetMapping("/get-id/{idNumber}")
     public ResponseEntity getDetails(@PathVariable("idNumber") Long idNumber){
         return new ResponseEntity(userService.findDetails(idNumber),HttpStatus.OK);
     }
 
-    @GetMapping("/logHistory")
+    @GetMapping("/login-history")
     public ResponseEntity<List<LoginHistoryModel>> getAllLoginHistory() {
         try {
             List<LoginHistoryModel> loginHistory = userService.findLoginHistory();
