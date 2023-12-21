@@ -1,9 +1,12 @@
 import "./App.css";
+import Login from "./pages/loginmodule/login";
 
 function App() {
     return (
         <>
-            <h1>Financial Management System</h1>
+            <div>
+                <Login />
+            </div>
         </>
     );
 }
