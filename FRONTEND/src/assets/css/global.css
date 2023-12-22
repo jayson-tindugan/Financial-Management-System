@@ -1,0 +1,103 @@
+/* GLOBAL HEADER STYLES START */
+.global-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--green);
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--whitesmoke);
+}
+.left-header-content {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 100%;
+}
+.toggle-btn button {
+    background: none;
+    border: none;
+    color: var(--white);
+}
+.vertical-divider {
+    background-color: var(--whitesmoke);
+    height: 100%;
+    width: 1px;
+}
+.logo {
+    display: flex;
+    align-items: center;
+}
+.logo img {
+    width: auto;
+    height: 55px;
+}
+.right-header-content {
+    padding-right: 1rem;
+}
+.left-header-content svg,
+.right-header-content svg {
+    cursor: pointer;
+}
+/* GLOBAL HEADER STYLES END */
+/* GLOBAL SIDEBAR STYLES START */
+.sidebar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+    background-color: var(--darkgreen);
+    font-size: 1.125rem;
+    transform: translateX(0%);
+}
+.sidebar-container-active {
+    transform: translateX(0%);
+}
+.sidebar-container ul {
+    list-style: none;
+    margin-top: 1rem;
+}
+.sidebar-container ul li {
+    display: block;
+}
+.sidebar-container ul li a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--white);
+    padding: 1rem;
+    transition: all 0.2s ease-in-out;
+}
+.sidebar-container ul li a:hover {
+    background-color: var(--green);
+    /* color: var(--black); */
+}
+/* GLOBAL SIDEBAR STYLES START */
+/* MAIN CONTENT DEFAUL STYLE START */
+.main-content {
+    margin-top: 60px;
+    background-color: var(--whitesmoke);
+    min-height: calc(100vh - 92px);
+    padding: 1rem;
+}
+/* MAIN CONTENT DEFAUL STYLE END */
+/* ADMIN DASHBOARD STYLES START */
+/* ADMIN DASHBOARD STYLES END */
+/* TREASURER DASHBOARD STYLES START */
+/* TREASURER DASHBOARD STYLES END */
+/* AUDITOR STYLES START */
+/* AUDITOR DASHBOARD STYLES END */
+/* USER DASHBOARD STYLES START */
+/* USER DASHBOARD STYLES END */
