@@ -1,10 +1,10 @@
-package com.bsit4d.bitsfms;
+package com.bsit4d.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BitsfmsApplicationTests {
+class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {

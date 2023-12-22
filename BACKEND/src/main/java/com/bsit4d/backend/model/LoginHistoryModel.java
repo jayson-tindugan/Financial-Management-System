@@ -1,4 +1,5 @@
-package com.bsit4d.bitsfms.model;
+package com.bsit4d.backend.model;
+
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,5 @@ public class LoginHistoryModel {
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime logDate;
-
     private Long idNumber;
 }
