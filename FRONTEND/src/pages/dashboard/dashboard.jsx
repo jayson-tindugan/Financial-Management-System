@@ -1,5 +1,5 @@
 // Userdashboard.jsx
-import React, { userState } from "react";
+import React, { useState } from "react";
 import Header from "../../components/reusable-components/header.jsx";
 import Sidebar from "../../components/reusable-components/sidebar.jsx";
 import LoginDetails from "../../components/loginDetails.jsx";
@@ -8,19 +8,24 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function Userdashboard() {
     const accountDetails = LoginDetails();
-    const [isSidebarActive, setSidebarActive] = useState(true); // State to manage sidebar
+
+    const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
     const toggleSidebar = () => {
-        setSidebarActive(!isSidebarActive);
+        setIsSidebarVisible(!isSidebarVisible);
     };
     return (
         <div>
-            <Header />
-            <div className="main-content">
-                <div style={{ marginLeft: "40%" }}>
+            <Header toggleSidebar={toggleSidebar} />
+            <div
+                className={`main-content${
+                    isSidebarVisible ? " sidebar-open" : ""
+                }`}
+            >
+                <div>
                     <Alert variant="success">
                         <b style={{ fontSize: "50px" }}>
-                            Fullname:{" "}
+                            New Dashboard Endpoint <br /> Fullname:{" "}
                             {accountDetails.firstName +
                                 " " +
                                 accountDetails.lastName}{" "}
@@ -31,8 +36,7 @@ function Userdashboard() {
                     </Alert>
                 </div>
             </div>
-            <Sidebar isActive={isSidebarActive} />
-            <ToggleButton toggleSidebar={toggleSidebar} />
+            <Sidebar isSidebarVisible={isSidebarVisible} />
         </div>
     );
 }

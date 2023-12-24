@@ -2,12 +2,12 @@ import Toggle from "../../components/reusable-components/toggleButton.jsx";
 import BITS_LOGO from "../../assets/img/BITS_LOGO.png";
 import LogoutButton from "../../components/reusable-components/logout.jsx";
 
-function Header() {
+function Header({ toggleSidebar }) {
     return (
         <header className="global-header">
             <div className="left-header-content">
                 <div className="toggle-btn">
-                    <Toggle />
+                    <Toggle onClick={toggleSidebar} />
                 </div>
                 <div className="vertical-divider"></div>
                 <div className="logo">

@@ -64,7 +64,8 @@
     height: calc(100vh - 60px);
     background-color: var(--darkgreen);
     font-size: 1.125rem;
-    transform: translateX(0%);
+    transform: translateX(-100%);
+    transition: all 0.3s ease-in-out;
 }
 .sidebar-container-active {
     transform: translateX(0%);

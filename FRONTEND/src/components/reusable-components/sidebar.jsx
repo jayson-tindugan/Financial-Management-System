@@ -1,13 +1,12 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import LoginDetails from "../../components/loginDetails.jsx";
 import * as Icon from "react-bootstrap-icons";
-function Sidebar({ isActive }) {
+function Sidebar({ isSidebarVisible }) {
     const accountDetails = LoginDetails();
     return (
         <nav
-            className={`sidebar-container ${
-                isActive ? "sidebar-container-active" : ""
+            className={`sidebar-container${
+                isSidebarVisible ? " sidebar-container-active" : ""
             }`}
         >
             {/* ADMIN SIDEBAR */}

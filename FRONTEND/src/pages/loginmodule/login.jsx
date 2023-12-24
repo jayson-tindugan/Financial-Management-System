@@ -8,14 +8,19 @@ import session from "../../components/session.jsx";
 import { Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BITS_LOGO from "../../assets/img/BITS_LOGO.png";
+import * as Icon from "react-bootstrap-icons";
 
 function Login() {
     const isAuthenticated = session();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+
+    const navigate = useNavigate();
+
     console.log("Is Authenticated:", isAuthenticated);
+
     async function login(event) {
         event.preventDefault();
         axios.defaults.withCredentials = true;
@@ -29,9 +34,9 @@ function Login() {
                 .then(
                     (response) => {
                         console.log(response.data);
-                        if (response.data == "Login successfull") {
+                        if (response.data == "Login successfully") {
                             localStorage.setItem("authToken", response.data);
-                            navigate("/userdashboard");
+                            navigate("/Dashboard");
                         }
                         if (
                             response.data ==
@@ -46,14 +51,14 @@ function Login() {
                             setErrorMessage("User does not exist");
                         } else {
                             console.log(
-                                "Unexpected error encountered! Contact technical support for further assistance."
+                                "Unexpected error encounterer! Contact technical support for assistance!"
                             );
                         }
                     },
                     (fail) => {
                         console.error(fail);
                         setErrorMessage(
-                            "Unexpected error encountered! Contact technical support for further assistance."
+                            "Unexpected error encounterer! Contact technical support for assistance!"
                         );
                     }
                 );
@@ -64,11 +69,30 @@ function Login() {
     const handleInputChange = (event) => {
         // Update the input values and clear the error message
         if (event.target.id === "username") {
-            setUsername(event.target.value);
+            const inputValue = event.target.value.replace(/\D/g, ""); // Remove non-digit characters
+            setUsername(inputValue.slice(0, 9)); // Limit to 9 characters
+            setErrorMessage("");
         } else if (event.target.id === "password") {
-            setPassword(event.target.value);
+            const inputValue = event.target.value;
+
+            // Filter out characters that don't match the criteria
+            const filteredInput = inputValue.replace(/[^a-zA-Z0-9@_]/g, "");
+            setPassword(filteredInput);
+
+            // Validate if the password meets the criteria
+            const passwordRegex =
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@_])[a-zA-Z0-9@_]+$/;
+
+            if (filteredInput === "" || passwordRegex.test(filteredInput)) {
+                setErrorMessage("");
+            } else {
+                setErrorMessage("");
+            }
         }
-        setErrorMessage("");
+    };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
     };
 
     return (
@@ -81,7 +105,7 @@ function Login() {
                     alt="BITS LOGO"
                 />
                 <div className="Login-Card">
-                    <form action="/userDashboard" method="POST">
+                    <form action="/Dashboard" method="POST">
                         <div className="Title-Header">
                             <h3>Login</h3>
                             <hr />
@@ -96,22 +120,41 @@ function Login() {
                                 id="username"
                                 value={username}
                                 onChange={handleInputChange}
+                                maxLength={9}
                             />
                         </div>
                         <div className="loginUserInput">
                             <label htmlFor="password">Password:</label>
-                            <input
-                                type="password"
-                                id="password"
-                                value={password}
-                                onChange={handleInputChange}
-                            />
+                            <div className="password-input-container">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    id="password"
+                                    value={password}
+                                    onChange={handleInputChange}
+                                />
+                                <div
+                                    className="showPassword"
+                                    onClick={togglePasswordVisibility}
+                                >
+                                    {showPassword ? (
+                                        <Icon.Eye
+                                            className="sidebar-icons open pointer"
+                                            color="black"
+                                        />
+                                    ) : (
+                                        <Icon.EyeSlash
+                                            className="sidebar-icons close pointer"
+                                            color="black"
+                                        />
+                                    )}
+                                </div>
+                            </div>
                         </div>
                         <div className="forgotWrapper">
                             <a href="#">Forgot Password?</a>
                         </div>
                         <div className="btnWrapper">
-                            <div to="/userDashboard" className="Link">
+                            <div to="/Dashboard" className="Link">
                                 <button onClick={login} name="login">
                                     Login
                                 </button>

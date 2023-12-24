@@ -10,8 +10,17 @@
     align-items: center;
     color: var(--whitesmoke);
 }
-.logout {
+.Login-header-logo img {
+    width: auto;
+    height: 55px;
+}
+.login-header-brand {
+    display: flex;
     padding: 1rem;
+    align-items: center;
+}
+.login-header-brand img {
+    display: none;
 }
 .Login-Footer {
     position: fixed;
@@ -36,7 +45,7 @@
     padding: 1rem;
     border-radius: 10px;
     color: var(--white);
-    width: 20%;
+    width: 350px;
 }
 .Title-Header {
     margin-bottom: 0.5rem;
@@ -87,6 +96,41 @@
 }
 .Link button:hover {
     background-color: var(--lightgreen-hover);
-    color: var(--black);
+}
+.password-input-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-input-container input {
+    padding-right: 30px; /* Adjust this value based on icon size */
+}
+
+.showPassword {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+}
+.pointer {
+    cursor: pointer;
+}
+@media only screen and (max-width: 48em) {
+    .login-main img {
+        display: none;
+    }
+    .login-header-brand h3 {
+        display: none;
+    }
+    .login-header-brand img {
+        display: block;
+    }
+}
+@media only screen and (max-width: 36em) {
+    .login-card {
+        min-width: 90vw;
+    }
 }
 /* LOGIN STYLES END */
