@@ -29,6 +29,9 @@ Igp { Legend and Values: Inflows, Outflows, Net Profit/Loss }
 - Table
 - Headers: Date, Transaction Type, Particular, Total, Remarks
 
+•	Title: Login history
+- List of Datetime logs
+
 
 # Transaction Page Content 
 -	Transaction form
