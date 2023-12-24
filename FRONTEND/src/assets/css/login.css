@@ -48,12 +48,11 @@
     margin-bottom: 0.5rem;
 }
 .loginUserInput input {
-    padding: 0.125rem 0;
+    padding: 0.25rem;
     border-radius: 3px;
     border: none;
     outline: none;
     font-size: 1rem;
-    height: 27px;
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.8);
     -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.8);
     -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.8);

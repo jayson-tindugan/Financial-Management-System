@@ -5,11 +5,12 @@
     --lightgreen-hover: hsl(119, 17%, 55%);
     --white: hsl(0, 0%, 100%);
     --whitesmoke: hsl(0, 0%, 96%);
+    --black: hsl(0, 0%, 10%);
 }
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: content-box;
 }
 html {
     font-family: Helvetica, "Poppins", sans-serif;

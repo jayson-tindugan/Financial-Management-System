@@ -29,7 +29,7 @@ function Login() {
                 .then(
                     (response) => {
                         console.log(response.data);
-                        if (response.data == "Login successfully") {
+                        if (response.data == "Login successfull") {
                             localStorage.setItem("authToken", response.data);
                             navigate("/userdashboard");
                         }
@@ -45,12 +45,16 @@ function Login() {
                         ) {
                             setErrorMessage("User does not exist");
                         } else {
-                            console.log("OH nooooo may mali sakin, char");
+                            console.log(
+                                "Unexpected error encountered! Contact technical support for further assistance."
+                            );
                         }
                     },
                     (fail) => {
                         console.error(fail);
-                        setErrorMessage("Something wrong with the server.");
+                        setErrorMessage(
+                            "Unexpected error encountered! Contact technical support for further assistance."
+                        );
                     }
                 );
         } catch (err) {

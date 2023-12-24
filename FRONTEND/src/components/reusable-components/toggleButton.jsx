@@ -1,12 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 function ToggleButton() {
-    const { isToggled, setToggle } = useState(true);
-    const handleToggle = () => {
-        setToggle(!isToggled());
-    };
     return (
-        <button onClick={handleToggle}>
+        <button onClick={toggleSidebar}>
             {isToggled ? (
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
