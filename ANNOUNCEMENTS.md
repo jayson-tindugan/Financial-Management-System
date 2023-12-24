@@ -3,7 +3,7 @@
 # Dashboard Content To be added
 
 •	Title: Total Inflows and Outflows 
- 	- Grouped Bar Chart 
+- Grouped Bar Chart 
 - group by:
  	Collection {Legend and Values: Inflows, Outflows, Net Profit/Loss }, 
 Donation { Legend and Values: Inflows, Outflows, Net Profit/Loss }, 
@@ -11,23 +11,23 @@ Igp { Legend and Values: Inflows, Outflows, Net Profit/Loss }
 
 •	Title: Monthly Collection Cash Flow
 – Grouped Line Chart
--Group by months, Past 6 months up to current. Legends and values of Cash Inflows, Cash Outflows, and Beginning Balance.
+- Group by months, Past 6 months up to current. Legends and values of Cash Inflows, Cash Outflows, and Beginning Balance.
 
 •	Title: Monthly Donation Cash Flow
 – Grouped Line Chart
--Group by months, Past 6 months up to current. Legends and values of Cash Inflows, Cash Outflows, and Beginning Balance.
+- Group by months, Past 6 months up to current. Legends and values of Cash Inflows, Cash Outflows, and Beginning Balance.
 
 •	Title: Monthly IGP Cash Flow
 – Grouped Line Chart
--Group by months, Past 6 months up to current. Legends and values of Cash Inflows, Cash Outflows, and Beginning Balance.
+- Group by months, Past 6 months up to current. Legends and values of Cash Inflows, Cash Outflows, and Beginning Balance.
 
 •	Title: Total Expenses
 – Pie Chart
--Legends and value: (Food, Supplies, Transportation, Rent, Representation Expense, Medical, Communication, Miscellaneous, Token).
+- Legends and value: (Food, Supplies, Transportation, Rent, Representation Expense, Medical, Communication, Miscellaneous, Token).
 
 •	Title: Recent Transaction Summary
--	Table
-Headers: Date, Transaction Type, Particular, Total, Remarks
+- Table
+- Headers: Date, Transaction Type, Particular, Total, Remarks
 
 
 # Reminders (Add Reminders Below this Line)
