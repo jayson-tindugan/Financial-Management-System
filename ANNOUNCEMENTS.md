@@ -30,6 +30,11 @@ Igp { Legend and Values: Inflows, Outflows, Net Profit/Loss }
 - Headers: Date, Transaction Type, Particular, Total, Remarks
 
 
+# Transaction Page Content 
+-	Transaction form
+- Transaction Table (put a title: Breakdown of Cash Inflows and Outflows:) - Headers: Transaction ID, Date, Type, Amount, Quantity, Total, Particular, OR No. , Remark
+
+
 # Reminders (Add Reminders Below this Line)
 
 -   Always refer to this file for announcements and reminders
