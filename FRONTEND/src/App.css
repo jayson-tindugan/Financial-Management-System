@@ -2,15 +2,15 @@
 :root {
     --green: hsl(119, 17%, 50%);
     --darkgreen: #536150;
+    --lightgreen-hover: hsl(119, 17%, 55%);
     --white: hsl(0, 0%, 100%);
     --whitesmoke: hsl(0, 0%, 96%);
 }
 * {
     margin: 0;
     padding: 0;
-    box-sizing: content-box;
+    box-sizing: border-box;
 }
 html {
-    font-family: "Montserrat", sans-serif;
-    font-family: "Poppins", sans-serif;
+    font-family: Helvetica, "Poppins", sans-serif;
 }
