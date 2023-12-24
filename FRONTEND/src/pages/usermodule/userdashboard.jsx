@@ -1,8 +1,8 @@
 // Userdashboard.jsx
 import React from 'react';
-import Header from "../../components/reusable-components/header.jsx";
+import Header, { LoginDetails } from "../../components/reusable-components/header.jsx";
 import Sidebar from "../../components/reusable-components/sidebar.jsx";
-import LoginDetails from "../../components/loginDetails.jsx";
+// import LoginDetails from "../../components/loginDetails.jsx";
 import LogoutButton from "../../components/logout.jsx";
 import { Alert } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
