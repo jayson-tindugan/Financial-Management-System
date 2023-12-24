@@ -1,5 +1,35 @@
 # Announcements (Add Announcements Below this Line)
 
+# Dashboard Content To be added
+Dashboard Content
+•	Title: Total Inflows and Outflows 
+ 	- Grouped Bar Chart 
+- group by:
+ 	Collection {Legend and Values: Inflows, Outflows, Net Profit/Loss }, 
+Donation { Legend and Values: Inflows, Outflows, Net Profit/Loss }, 
+Igp { Legend and Values: Inflows, Outflows, Net Profit/Loss }
+
+•	Title: Monthly Collection Cash Flow
+– Grouped Line Chart
+-Group by months, Past 6 months up to current. Legends and values of Cash Inflows, Cash Outflows, and Beginning Balance.
+
+•	Title: Monthly Donation Cash Flow
+– Grouped Line Chart
+-Group by months, Past 6 months up to current. Legends and values of Cash Inflows, Cash Outflows, and Beginning Balance.
+
+•	Title: Monthly IGP Cash Flow
+– Grouped Line Chart
+-Group by months, Past 6 months up to current. Legends and values of Cash Inflows, Cash Outflows, and Beginning Balance.
+
+•	Title: Total Expenses
+– Pie Chart
+-Legends and value: (Food, Supplies, Transportation, Rent, Representation Expense, Medical, Communication, Miscellaneous, Token).
+
+•	Title: Recent Transaction Summary
+-	Table
+Headers: Date, Transaction Type, Particular, Total, Remarks
+
+
 # Reminders (Add Reminders Below this Line)
 
 -   Always refer to this file for announcements and reminders
@@ -26,3 +56,5 @@
     - test(for system testing)
     - frontend(for frontend development)
     - backend(for backend development)
+
+
