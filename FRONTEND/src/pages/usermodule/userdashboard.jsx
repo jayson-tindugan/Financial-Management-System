@@ -9,7 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Userdashboard() {
   const accountDetails = LoginDetails();
-
   return (
     <div>
       <Header />
@@ -17,8 +16,8 @@ function Userdashboard() {
         <div style={{ marginLeft: '40%' }}>
           <Alert variant="success">
             <b style={{ fontSize: '50px' }}>
-            Fullname:  {accountDetails.firstName+' '+accountDetails.lastName} <br />
-            Id Number:   {accountDetails.idNumber} <br/>
+             Fullname:  {accountDetails.firstName+' '+accountDetails.lastName} <br />
+             Id Number:   {accountDetails.idNumber} <br/>
              Role:  {accountDetails.role}
             </b>
           </Alert>

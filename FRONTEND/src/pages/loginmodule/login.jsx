@@ -5,11 +5,16 @@ import {  useState } from "react";
 import { useNavigate, } from 'react-router-dom';
 import axios from "axios";
 import session from "../../components/session.jsx";
+import { Alert } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import BITS_LOGO from '../../assets/img/BITS_LOGO1.png';
+
 function Login() {
     const isAuthenticated = session();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('');
     console.log('Is Authenticated:', isAuthenticated);
     async function login(event) {
         event.preventDefault();
@@ -27,10 +32,10 @@ function Login() {
                 navigate('/userdashboard');
              }
              if(response.data=='Authentication failed: Bad credentials'){
-                alert('Wrong password');
+                setErrorMessage('Wrong password');
              }
              if(response.data=='Authentication failed: Error loading user by username'){
-                alert('User does not exist');
+                setErrorMessage('User does not exist');
              }
              else{
                 console.log("OH nooooo may mali sakin, char");
@@ -38,41 +43,47 @@ function Login() {
           
           }, fail => {
            console.error(fail); 
-           alert("Wrong credentials");
+           setErrorMessage('Something wrong with the server.');
         });
 
         }
          catch (err) {
           alert(err);
         }
-      
       }
+      const handleInputChange = (event) => {
+        // Update the input values and clear the error message
+        if (event.target.id === 'username') {
+            setUsername(event.target.value);
+        } else if (event.target.id === 'password') {
+            setPassword(event.target.value);
+        }
+        setErrorMessage('');
+    };
 
     return (
         <div>
             <Header></Header>
             <div className="login-main">
-                <img src="../../assets/react.svg" alt="BITS LOGO" />
-                <form action="/userDashboard" className="Login-Card" method="POST">
+                <img src={BITS_LOGO} style={{ width: '350px;', height: '350px' }}alt="BITS LOGO" />
+                <div className="Login-Card">
+                <form action="/userDashboard"  method="POST">
                     <div className="Title-Header">
                         <h3>Login</h3>
                         <hr />
                     </div>
+                    {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
                     <div className="loginUserInput">
                         <label htmlFor="stud_id">Student ID:</label>
                         <input type="text" id="username"  
                              value={username}
-                             onChange={(event) => {
-                             setUsername(event.target.value);
-                            }} />
+                             onChange={handleInputChange} />
                     </div>
                     <div className="loginUserInput">
                         <label htmlFor="password">Password:</label>
                         <input type="password" id="password"
                             value={password}
-                            onChange={(event) => {
-                            setPassword(event.target.value);
-                            }} />
+                            onChange={handleInputChange} />
                     </div>
                     <div className="forgotWrapper">
                         <a href="#">Forgot Password?</a>
@@ -85,6 +96,7 @@ function Login() {
                         </div>
                     </div>
                 </form>
+                </div>
             </div>
             <Footer></Footer>
         </div>
