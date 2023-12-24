@@ -20,11 +20,11 @@ public class TransactionModel {
     private Float amount;
     private String transactionType;
     @Column(nullable = true)
+    private Float CollectionBalance;
+    @Column(nullable = true)
+    private Float DonationBalance;
+    @Column(nullable = true)
     private Float IgpBalance;
-    @Column(nullable = true)
-    private Float CohBalance;
-    @Column(nullable = true)
-    private Float SmBalance;
     private Long idNumber;
 
 
