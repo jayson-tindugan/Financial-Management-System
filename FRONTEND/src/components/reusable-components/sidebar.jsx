@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
-function Sidebar() {
+import LoginDetails from "../../components/loginDetails.jsx";
+import * as Icon from "react-bootstrap-icons";
+function Sidebar({ isSidebarVisible }) {
+    const accountDetails = LoginDetails();
     return (
         <nav className="sidebar-container">
             <ul>
