@@ -28,13 +28,13 @@ public class TransactionModel {
     private Long idNumber;
 
 
-    public Float getSmBalance() {
-        return SmBalance;
-    }
+//    public Float getSmBalance() {
+//        return SmBalance;
+//    }
 
-    public void setSmBalance(Float smBalance) {
-        SmBalance = smBalance;
-    }
+//    public void setSmBalance(Float smBalance) {
+//        SmBalance = smBalance;
+//    }
 
     @Temporal(TemporalType.DATE)
     private LocalDate transactionDate;
@@ -129,13 +129,13 @@ public class TransactionModel {
         IgpBalance = igpBalance;
     }
 
-    public Float getCohBalance() {
-        return CohBalance;
-    }
+//    public Float getCohBalance() {
+//        return CohBalance;
+//    }
 
-    public void setCohBalance(Float cohBalance) {
-        CohBalance = cohBalance;
-    }
+//    public void setCohBalance(Float cohBalance) {
+//        CohBalance = cohBalance;
+//    }
 
     public Long getStudentNumber() {
         return studentNumber;
