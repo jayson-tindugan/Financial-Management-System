@@ -28,19 +28,19 @@ const options = {
     },
     title: {
       display: true,
-      text: 'Total Cash Inflows and Outflows',
+      text: 'Monthly Donation Cashflow',
     },
   },
 };
 
-const TotalCashflowChart = () => {
+const MonthlyDonationChart = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         axios.defaults.withCredentials = true;
-        const response = await axios.get('http://localhost:8001/transaction/totalCashflow');
+        const response = await axios.get('http://localhost:8001/transaction/monthlyCollection');
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error.response?.data.message || 'Unknown error');
@@ -64,21 +64,21 @@ const TotalCashflowChart = () => {
   }
 
   const chartData = {
-    labels: data.map(entry => entry.allocationType),
+    labels: data.map(entry => entry.month),
     datasets: [
       {
         label: 'Total Inflows',
-        data: data.map(entry => entry.totalInflows),
+        data: data.map(entry => entry.cashInflows),
         backgroundColor: 'rgba(75,192,192,0.5)',
       },
       {
         label: 'Total Outflows',
-        data: data.map(entry => entry.totalOutflows),
+        data: data.map(entry => entry.cashOutflows),
         backgroundColor: 'rgba(255,99,132,0.5)',
       },
       {
-        label: 'Net Profit/Loss',
-        data: data.map(entry => entry.netProfitLoss),
+        label: 'Cash on Hands',
+        data: data.map(entry => entry.cashOnHands),
         backgroundColor: 'rgba(255,206,86,0.5)',
       },
     ],
@@ -91,4 +91,4 @@ const TotalCashflowChart = () => {
   );
 };
 
-export default TotalCashflowChart;
+export default MonthlyDonationChart;

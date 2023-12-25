@@ -6,6 +6,9 @@ import LoginDetails from "../../components/loginDetails.jsx";
 import { Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TotalCashflowChart from "../../components/totalCashflowChart.tsx";
+import MonthlyCollectionChart from "../../components/monthlyCollectionChart.tsx";
+import MonthlyDonationChart from "../../components/monthlyDonationChart.tsx";
+import MonthlyIgpChart from "../../components/monthlyIgpChart.tsx";
 function Userdashboard() {
     const accountDetails = LoginDetails();
 
@@ -24,6 +27,9 @@ function Userdashboard() {
             >
                 <div>
                     <TotalCashflowChart/>
+                    <MonthlyCollectionChart/>
+                    <MonthlyDonationChart/>
+                    <MonthlyIgpChart/>
                     <Alert variant="success">
                         <b style={{ fontSize: "50px" }}>
                             New Dashboard Endpoint <br /> Fullname:{" "}
