@@ -2,7 +2,6 @@ import "../../assets/css/global.css";
 import Header from "../../components/reusable-components/header.jsx";
 import Sidebar from "../../components/reusable-components/sidebar.jsx";
 
-
 function Userdashboard() {
     return (
         <div>
@@ -23,7 +22,7 @@ function Userdashboard() {
                 Insert Report Content Here
             </div>
             <Sidebar />
-        </div> 
+        </div>  
     );
 }
 

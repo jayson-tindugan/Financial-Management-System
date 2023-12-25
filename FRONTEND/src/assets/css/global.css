@@ -59,7 +59,8 @@
     height: calc(100vh - 60px);
     background-color: var(--darkgreen);
     font-size: 1.125rem;
-    transform: translateX(0%);
+    transform: translateX(-100%);
+    /* -100% para makapagedit ng mga design sa components ng mga module default ay 0% */
 }
 .sidebar-container-active {
     transform: translateX(0%);
@@ -96,6 +97,75 @@
 /* ADMIN DASHBOARD STYLES START */
 
 /* ADMIN DASHBOARD STYLES END */
+.col1{
+    display: flex;
+    width: 100%;
+    margin: 5px 0 40px 0;
+}
+.orgname{
+    margin: auto;
+}
+.col2{
+    height: 100%;
+    display: flex;
+    gap: 10px;
+}
+.row1 , .row2 , .row3, .row4, .row5{
+    width: 100%;
+    border-radius: 10px;
+    padding: 1rem;
+    border-radius: 12px;
+    border-style: solid;
+}
+.row1{
+    background-color: #C7C7C7;
+}
+.row2{
+    background-color: #526051;
+}
+.row3{
+    background-color: #3E433E;
+}
+.row4{
+    background-color: #21401E;
+}
+.row5{
+    background-color: #E5E4E2;
+}
+.row5sub{
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.col3{
+    display: flex;
+    width: 100%;
+    background-color: #526051;
+    border-radius: 10px;
+    padding: 2%;
+    gap: 10px;
+}
+.row6{
+    color:#ffffff;
+}
+.tb1{
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border-style: solid;
+    padding: 1%;
+    gap: 10px;
+}
+.exp1{
+    display: flex;
+    height: auto;
+}
+.s1exp1, .s2exp1, .s3exp1{
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+
 /* TREASURER DASHBOARD STYLES START */
 
 /* TREASURER DASHBOARD STYLES END */
