@@ -10,8 +10,17 @@
     align-items: center;
     color: var(--whitesmoke);
 }
-.logout {
+.Login-header-logo img {
+    width: auto;
+    height: 55px;
+}
+.login-header-brand {
+    display: flex;
     padding: 1rem;
+    align-items: center;
+}
+.login-header-brand img {
+    display: none;
 }
 .Login-Footer {
     position: fixed;
@@ -36,11 +45,10 @@
     padding: 1rem;
     border-radius: 10px;
     color: var(--white);
-    width: 20%;
-    height: 300px;
+    width: 350px;
 }
 .Title-Header {
-    margin-bottom: 3rem;
+    margin-bottom: 0.5rem;
 }
 .loginUserInput label,
 .loginUserInput input {
@@ -49,12 +57,11 @@
     margin-bottom: 0.5rem;
 }
 .loginUserInput input {
-    padding: 0.125rem 0;
+    padding: 0.25rem;
     border-radius: 3px;
     border: none;
     outline: none;
     font-size: 1rem;
-    height: 27px;
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.8);
     -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.8);
     -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.8);
@@ -67,7 +74,7 @@
     text-decoration: underline;
 }
 .btnWrapper {
-    margin-top: 2rem;
+    margin-top: 0.7rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,6 +96,41 @@
 }
 .Link button:hover {
     background-color: var(--lightgreen-hover);
-    color: var(--black);
+}
+.password-input-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-input-container input {
+    padding-right: 30px; /* Adjust this value based on icon size */
+}
+
+.showPassword {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+}
+.pointer {
+    cursor: pointer;
+}
+@media only screen and (max-width: 48em) {
+    .login-main img {
+        display: none;
+    }
+    .login-header-brand h3 {
+        display: none;
+    }
+    .login-header-brand img {
+        display: block;
+    }
+}
+@media only screen and (max-width: 36em) {
+    .login-card {
+        min-width: 90vw;
+    }
 }
 /* LOGIN STYLES END */

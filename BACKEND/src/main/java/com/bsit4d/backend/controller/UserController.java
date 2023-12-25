@@ -33,6 +33,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
+@CrossOrigin(origins = { "http://localhost:5173" },
+        exposedHeaders = {"Access-Control-Allow-Origin: http://localhost:5173","Access-Control-Allow-Credentials","Access-Control-Allow-Method","Access-Control-Allow-Headers"},
+        allowedHeaders ={ "*","Access-Control-Allow-Credentials:true"}, allowCredentials = "true")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -61,23 +64,24 @@ public class UserController {
             context.setAuthentication(authentication);
             securityContextHolderStrategy.setContext(context);
             securityContextRepository.saveContext(context, request, response);
+            String tokenGenerated= String.valueOf(token);
             // You may return additional information if needed
-            return ResponseEntity.ok("Login successful");
+            return ResponseEntity.ok("Login successfully");
         } catch (AuthenticationException e) {
             // Handle authentication failure
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Authentication failed: " + e.getMessage());
+            return ResponseEntity.ok("Authentication failed: " + e.getMessage());
         }
     }
-
+    @CrossOrigin(origins = { "http://localhost:5173" }, allowedHeaders = "*", allowCredentials = "true")
     @GetMapping("/accountDetails")
     public ResponseEntity<Object> getMyDetails(){
         return ResponseEntity.ok(userRepository.findByIdNumber(Long.valueOf(userService.getLoggedInUserDetails().getUsername())));
     }
     SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
-    @PostMapping("/logout")
+    @GetMapping("/logoutUser")
     public String performLogout(Authentication authentication, HttpServletRequest request, HttpServletResponse response) {
         this.logoutHandler.logout(request, response, authentication);
-        return "redirect:/index";
+        return "logout success";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

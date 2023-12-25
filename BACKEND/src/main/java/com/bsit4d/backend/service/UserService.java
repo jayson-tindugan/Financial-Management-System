@@ -118,12 +118,15 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public UserDetails getLoggedInUserDetails(){
+    public UserDetails getLoggedInUserDetails() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication != null && authentication.getPrincipal() instanceof UserDetails){
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
             return (UserDetails) authentication.getPrincipal();
+        } else {
+            // Handle the case when the user is not authenticated
+            throw new RuntimeException("User not authenticated");
         }
-        return  null;
     }
+
 
 }
