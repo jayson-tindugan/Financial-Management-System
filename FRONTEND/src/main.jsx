@@ -3,15 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dashboard from "./pages/dashboard/dashboard.jsx";
-import UserOfficerRecords from "./pages/usermodule/officer.jsx";
-import UserReport from "./pages/usermodule/report.jsx";
-import UserProfile from "./pages/usermodule/profile.jsx";
-import Moduleadmin from "./pages/dashboardmodule/moduleadmin.jsx";
-import Students from "./pages/dashboardmodule/students.jsx";
-import Officers from "./pages/dashboardmodule/officers.jsx";
-import Expenses from "./pages/dashboardmodule/expenses.jsx"
-
+import { Dashboard, Profile, Transaction } from "./pages/index.js";
 
 const router = createBrowserRouter([
     // Login / index route
@@ -21,42 +13,20 @@ const router = createBrowserRouter([
     },
     // dashboard module
     {
-        path: "/moduleAdmin",
-        element: <Moduleadmin />,
-    },
-    {
-        path: "/students",
-        element: <Students />,
-    },
-    {
-        path: "/officers",
-        element: <Officers />,
-    },
-    {
-        path: "/expenses",
-        element: <Expenses />,
-    },
-    // usermodule routes
-    {
         path: "/Dashboard",
         element: <Dashboard />,
     },
+    // profile module
     {
-        path: "/userOfficerRecords",
-        element: <UserOfficerRecords />,
+        path: "/Profile",
+        element: <Profile />,
     },
+    // treasurer module
     {
-        path: "/userReport",
-        element: <UserReport />,
+        path: "/Transaction",
+        element: <Transaction />,
     },
-    {
-        path: "/userProfile",
-        element: <UserProfile />,
-    },
-
-    //adminmodule routes
 ]);
-    
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>

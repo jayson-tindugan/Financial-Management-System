@@ -5,6 +5,7 @@ import Sidebar from "../../components/reusable-components/sidebar.jsx";
 import LoginDetails from "../../components/loginDetails.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as Icon from "react-bootstrap-icons";
+import "../../assets/css/global.css";
 
 function Userdashboard() {
     const accountDetails = LoginDetails();
