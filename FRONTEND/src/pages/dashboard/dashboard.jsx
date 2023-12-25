@@ -5,7 +5,7 @@ import Sidebar from "../../components/reusable-components/sidebar.jsx";
 import LoginDetails from "../../components/loginDetails.jsx";
 import { Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import TotalCashflowChart from "../../components/totalCashflowChart.tsx";
 function Userdashboard() {
     const accountDetails = LoginDetails();
 
@@ -23,6 +23,7 @@ function Userdashboard() {
                 }`}
             >
                 <div>
+                    <TotalCashflowChart/>
                     <Alert variant="success">
                         <b style={{ fontSize: "50px" }}>
                             New Dashboard Endpoint <br /> Fullname:{" "}

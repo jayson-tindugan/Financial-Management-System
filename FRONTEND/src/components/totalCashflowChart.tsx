@@ -33,7 +33,7 @@ const options = {
   },
 };
 
-const GroupedBarChart = () => {
+const TotalCashflowChart = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -91,4 +91,4 @@ const GroupedBarChart = () => {
   );
 };
 
-export default GroupedBarChart;
+export default TotalCashflowChart;
