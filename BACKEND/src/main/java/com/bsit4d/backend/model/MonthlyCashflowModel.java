@@ -1,6 +1,6 @@
 package com.bsit4d.backend.model;
 
-public class MonthlyCollectionModel {
+public class MonthlyCashflowModel {
 private String month;
 private Double cashInflows;
 private Double cashOutflows;
@@ -38,13 +38,13 @@ private Double cashOnHands;
         this.cashOnHands = cashOnHands;
     }
 
-    public MonthlyCollectionModel(String month, Double cashInflows, Double cashOutflows, Double cashOnHands) {
+    public MonthlyCashflowModel(String month, Double cashInflows, Double cashOutflows, Double cashOnHands) {
         this.month = month;
         this.cashInflows = cashInflows;
         this.cashOutflows = cashOutflows;
         this.cashOnHands = cashOnHands;
     }
 
-    public MonthlyCollectionModel() {
+    public MonthlyCashflowModel() {
     }
 }

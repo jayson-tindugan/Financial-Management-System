@@ -1,13 +1,7 @@
 package com.bsit4d.backend.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
-
-public class TotalChartModel {
+public class TotalCashflowModel {
     private String allocationType;
     private Double totalInflows;
     private Double totalOutflows;
@@ -45,7 +39,7 @@ public class TotalChartModel {
         this.netProfitLoss = netProfitLoss;
     }
 
-    public TotalChartModel(String allocationType, Double totalInflows, Double totalOutflows, Double netProfitLoss) {
+    public TotalCashflowModel(String allocationType, Double totalInflows, Double totalOutflows, Double netProfitLoss) {
         this.allocationType = allocationType;
         this.totalInflows = totalInflows;
         this.totalOutflows = totalOutflows;

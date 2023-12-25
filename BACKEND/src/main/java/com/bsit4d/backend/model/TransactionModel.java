@@ -1,50 +1,43 @@
 package com.bsit4d.backend.model;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
-
+@NoArgsConstructor
 @Entity
 @Table(name = "transaction")
 public class TransactionModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private Double id;
     @Column(unique = true)
     private String transactionId;
 
-
     private String allocationType;
-    private Float amount;
+    private Double amount;
+    private Double quantity;
+    private Double total;
     private String transactionType;
     @Column(nullable = true)
-    private Float CollectionBalance;
+    private String particular;
     @Column(nullable = true)
-    private Float DonationBalance;
+    private String orNumber;
     @Column(nullable = true)
-    private Float IgpBalance;
-    private Long idNumber;
-
-
-    public Float getSmBalance() {
-        return SmBalance;
-    }
-
-    public void setSmBalance(Float smBalance) {
-        SmBalance = smBalance;
-    }
-
-    @Temporal(TemporalType.DATE)
-    private LocalDate transactionDate;
-
-    @Column(nullable = true)
-    private Long studentNumber;
     private String remark;
+    private Double idNumber;
+    private Double balance;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    @OrderBy("transactionDate ASC")
+    private LocalDateTime transactionDate;
 
     public TransactionModel() {
-        this.transactionId = generateTransactionId();
+
     }
 
     // Custom method to generate a formatted transactionId
@@ -56,11 +49,12 @@ public class TransactionModel {
         return "BITS" + year + "-" + uuid;
     }
 
-    public Long getId() {
+
+    public Double getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Double id) {
         this.id = id;
     }
 
@@ -72,15 +66,6 @@ public class TransactionModel {
         this.transactionId = transactionId;
     }
 
-
-    public Float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Float amount) {
-        this.amount = amount;
-    }
-
     public String getAllocationType() {
         return allocationType;
     }
@@ -89,12 +74,28 @@ public class TransactionModel {
         this.allocationType = allocationType;
     }
 
-    public Long getIdNumber() {
-        return idNumber;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setIdNumber(Long idNumber){
-        this.idNumber = idNumber;
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public Double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Double quantity) {
+        this.quantity = quantity;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
     public String getTransactionType() {
@@ -105,12 +106,20 @@ public class TransactionModel {
         this.transactionType = transactionType;
     }
 
-    public LocalDate getTransactionDate() {
-        return transactionDate;
+    public String getParticular() {
+        return particular;
     }
 
-    public void setTransactionDate(LocalDate transactionDate) {
-        this.transactionDate = transactionDate;
+    public void setParticular(String particular) {
+        this.particular = particular;
+    }
+
+    public String getOrNumber() {
+        return orNumber;
+    }
+
+    public void setOrNumber(String orNumber) {
+        this.orNumber = orNumber;
     }
 
     public String getRemark() {
@@ -121,27 +130,49 @@ public class TransactionModel {
         this.remark = remark;
     }
 
-    public Float getIgpBalance() {
-        return IgpBalance;
+    public Double getIdNumber() {
+        return idNumber;
     }
 
-    public void setIgpBalance(Float igpBalance) {
-        IgpBalance = igpBalance;
+    public void setIdNumber(Double idNumber) {
+        this.idNumber = idNumber;
     }
 
-    public Float getCohBalance() {
-        return CohBalance;
+    public Double getBalance() {
+        return balance;
     }
 
-    public void setCohBalance(Float cohBalance) {
-        CohBalance = cohBalance;
+    public void setBalance(Double balanceCollection, Double balanceDonation, Double balanceIGP) {
+        if ("COLLECTION".equals(this.allocationType)) {
+            this.balance = balanceCollection;
+        } else if ("DONATION".equals(this.allocationType)) {
+            this.balance = balanceDonation;
+        } else if ("IGP".equals(this.allocationType)) {
+            this.balance = balanceIGP;
+        }
     }
 
-    public Long getStudentNumber() {
-        return studentNumber;
+    public LocalDateTime getTransactionDate() {
+        return transactionDate;
     }
 
-    public void setStudentNumber(Long studentNumber) {
-        this.studentNumber = studentNumber;
+    public void setTransactionDate(LocalDateTime transactionDate) {
+        this.transactionDate = transactionDate;
+    }
+
+    public TransactionModel(Double id, String transactionId, String allocationType, Double amount, Double quantity, Double total, String transactionType, String particular, String orNumber, String remark, Double idNumber, Double balance, LocalDateTime transactionDate) {
+        this.id = id;
+        this.transactionId = transactionId;
+        this.allocationType = allocationType;
+        this.amount = amount;
+        this.quantity = quantity;
+        this.total = total;
+        this.transactionType = transactionType;
+        this.particular = particular;
+        this.orNumber = orNumber;
+        this.remark = remark;
+        this.idNumber = idNumber;
+        balance = balance;
+        this.transactionDate = transactionDate;
     }
 }
