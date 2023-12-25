@@ -144,7 +144,7 @@ function Login() {
                                     ) : (
                                         <Icon.EyeSlash
                                             className="sidebar-icons close pointer"
-                                            color="black"
+                                            color="#716868"
                                         />
                                     )}
                                 </div>

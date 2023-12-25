@@ -45,7 +45,7 @@ const LogoutButton = () => {
     };
 
     return (
-        <Icon.BoxArrowRight
+        <Icon.Power
             onClick={logout}
             className="toggle-icons"
             width={30}

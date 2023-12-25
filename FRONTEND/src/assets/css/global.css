@@ -74,6 +74,10 @@
     padding: 0;
     list-style: none;
     margin-top: 1rem;
+    color: var(--white);
+}
+.sidebar-container ul .role {
+    padding-left: 1rem;
 }
 .sidebar-container ul li {
     display: block;
@@ -87,12 +91,35 @@
     padding: 1rem;
     transition: all 0.2s ease-in-out;
 }
-.sidebar-container ul li a:hover {
+.sidebar-container ul li a:not(.active-page):hover {
     background-color: var(--green);
 }
 .sidebar-icons {
     width: 25px;
     height: 25px;
+}
+.active-page {
+    background-color: var(--lightgreen-hover);
+}
+ul .sub-menu {
+    padding: 0;
+    margin: 0;
+}
+.sub-menu hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 0;
+}
+.sub-menu-toggle {
+    margin-left: auto;
+}
+.sub-menu-link-icon {
+    padding-left: 1rem;
+    width: 40px;
+    height: 40px;
+}
+.rotate {
+    transform: rotate(90deg); /* Rotate the caret to the right */
 }
 /* GLOBAL SIDEBAR STYLES START */
 /* MAIN CONTENT DEFAUL STYLE START */
@@ -106,58 +133,78 @@
 /* ADMIN DASHBOARD STYLES START */
 
 /* ADMIN DASHBOARD STYLES END */
-.col1{
+.greeting-section {
     display: flex;
-    width: 100%;
-    margin: 5px 0 40px 0;
-}
-.orgname{
-    margin: auto;
-}
-.col2{
+    align-items: center;
+    gap: 5rem;
     height: 100%;
-    display: flex;
-    gap: 10px;
+    padding: 1.5rem 0;
 }
-.row1 , .row2 , .row3, .row4, .row5{
+.greetings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    gap: 0.25rem;
+}
+.greetings h3 {
+    margin-top: 50px;
+}
+.org-name,
+.notice-card h2 {
+    color: var(--green);
+}
+.dashboard-card {
+    height: 100%;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 0.4fr 1fr;
+}
+.notice-card,
+.card-details {
     width: 100%;
+    height: 300px;
     border-radius: 10px;
     padding: 1rem;
-    border-radius: 12px;
-    border-style: solid;
 }
-.row1{
-    background-color: #C7C7C7;
+.card-title {
+    font-size: 2.125rem;
 }
-.row2{
-    background-color: #526051;
+.notice-card {
+    background-color: hsl(0, 0%, 85%);
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.25);
 }
-.row3{
-    background-color: #3E433E;
+.card-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    color: var(--white);
 }
-.row4{
-    background-color: #21401E;
-}
-.row5{
-    background-color: #E5E4E2;
-}
-.row5sub{
-    width: auto;
+.card-counter {
     display: flex;
+    align-items: end;
     justify-content: space-between;
+    gap: 1.25rem;
+    height: 80%;
 }
-.col3{
-    display: flex;
-    width: 100%;
+.count h2 {
+    font-size: 2.5rem;
+}
+.card1 {
     background-color: #526051;
-    border-radius: 10px;
-    padding: 2%;
-    gap: 10px;
 }
-.row6{
-    color:#ffffff;
+.card2 {
+    background-color: #3e433e;
 }
-.tb1{
+.card3 {
+    background-color: #21401e;
+}
+.card4 {
+    background-color: var(--green);
+}
+.tb1 {
     width: 100%;
     background-color: #ffffff;
     border-radius: 10px;
@@ -165,15 +212,16 @@
     padding: 1%;
     gap: 10px;
 }
-.exp1{
+.exp1 {
     display: flex;
     height: auto;
 }
-.s1exp1, .s2exp1, .s3exp1{
+.s1exp1,
+.s2exp1,
+.s3exp1 {
     flex-direction: column;
     background-color: #ffffff;
 }
-
 
 /* TREASURER DASHBOARD STYLES START */
 
