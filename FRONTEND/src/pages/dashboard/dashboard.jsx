@@ -4,6 +4,10 @@ import Header from "../../components/reusable-components/header.jsx";
 import Sidebar from "../../components/reusable-components/sidebar.jsx";
 import LoginDetails from "../../components/loginDetails.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
+import TotalCashflowChart from "../../components/totalCashflowChart.tsx";
+import MonthlyCollectionChart from "../../components/monthlyCollectionChart.tsx";
+import MonthlyDonationChart from "../../components/monthlyDonationChart.tsx";
+import MonthlyIgpChart from "../../components/monthlyIgpChart.tsx";
 import * as Icon from "react-bootstrap-icons";
 import "../../assets/css/global.css";
 
@@ -23,6 +27,8 @@ function Userdashboard() {
                     isSidebarVisible ? " sidebar-open" : ""
                 }`}
             >
+                <div>
+                   
                 <div className="greeting-section">
                     {/* Greetings */}
                     <div className="greetings">
@@ -109,8 +115,14 @@ function Userdashboard() {
                         </div>
                     </div>
                 </div>
+                <TotalCashflowChart/>
+                    <MonthlyCollectionChart/>
+                    <MonthlyDonationChart/>
+                    <MonthlyIgpChart/>
+                    
             </div>
             <Sidebar isSidebarVisible={isSidebarVisible} />
+        </div>
         </div>
     );
 }

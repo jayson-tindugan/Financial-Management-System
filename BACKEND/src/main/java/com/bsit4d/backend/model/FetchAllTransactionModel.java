@@ -1,54 +1,29 @@
 package com.bsit4d.backend.model;
 
-import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Column;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
-@NoArgsConstructor
-@Entity
-@Table(name = "transaction")
-public class TransactionModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Double id;
-    @Column(unique = true)
-    private String transactionId;
 
+public class FetchAllTransactionModel {
+    private Double id;
+    private String transactionId;
     private String allocationType;
     private Double amount;
     private Double quantity;
     private Double total;
     private String transactionType;
-    @Column(nullable = true)
     private String particular;
-    @Column(nullable = true)
     private String orNumber;
-    @Column(nullable = true)
     private String remark;
     private Double idNumber;
-    private Double balance;
-
+    private Double cashOnHandsCollection;
+    private Double cashOnHandsDonation;
+    private Double cashOnHandsIGP;
     @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
-    @OrderBy("transactionDate ASC")
     private LocalDateTime transactionDate;
-
-    // public TransactionModel() {
-
-    // }
-
-    // Custom method to generate a formatted transactionId
-    private String generateTransactionId() {
-        String year = String.valueOf(LocalDate.now().getYear());
-
-        String uuid = UUID.randomUUID().toString().toUpperCase().substring(0, 6); // Use part of the UUID
-
-        return "BITS" + year + "-" + uuid;
-    }
-
 
     public Double getId() {
         return id;
@@ -138,18 +113,28 @@ public class TransactionModel {
         this.idNumber = idNumber;
     }
 
-    public Double getBalance() {
-        return balance;
+    public Double getCashOnHandsCollection() {
+        return cashOnHandsCollection;
     }
 
-    public void setBalance(Double balanceCollection, Double balanceDonation, Double balanceIGP) {
-        if ("COLLECTION".equals(this.allocationType)) {
-            this.balance = balanceCollection;
-        } else if ("DONATION".equals(this.allocationType)) {
-            this.balance = balanceDonation;
-        } else if ("IGP".equals(this.allocationType)) {
-            this.balance = balanceIGP;
-        }
+    public void setCashOnHandsCollection(Double cashOnHandsCollection) {
+        this.cashOnHandsCollection = cashOnHandsCollection;
+    }
+
+    public Double getCashOnHandsDonation() {
+        return cashOnHandsDonation;
+    }
+
+    public void setCashOnHandsDonation(Double cashOnHandsDonation) {
+        this.cashOnHandsDonation = cashOnHandsDonation;
+    }
+
+    public Double getCashOnHandsIGP() {
+        return cashOnHandsIGP;
+    }
+
+    public void setCashOnHandsIGP(Double cashOnHandsIGP) {
+        this.cashOnHandsIGP = cashOnHandsIGP;
     }
 
     public LocalDateTime getTransactionDate() {
@@ -160,7 +145,7 @@ public class TransactionModel {
         this.transactionDate = transactionDate;
     }
 
-    public TransactionModel(Double id, String transactionId, String allocationType, Double amount, Double quantity, Double total, String transactionType, String particular, String orNumber, String remark, Double idNumber, Double balance, LocalDateTime transactionDate) {
+    public FetchAllTransactionModel(Double id, String transactionId, String allocationType, Double amount, Double quantity, Double total, String transactionType, String particular, String orNumber, String remark, Double idNumber, Double cashOnHandsCollection, Double cashOnHandsDonation, Double cashOnHandsIGP, LocalDateTime transactionDate) {
         this.id = id;
         this.transactionId = transactionId;
         this.allocationType = allocationType;
@@ -172,7 +157,22 @@ public class TransactionModel {
         this.orNumber = orNumber;
         this.remark = remark;
         this.idNumber = idNumber;
-        balance = balance;
+        this.cashOnHandsCollection = cashOnHandsCollection;
+        this.cashOnHandsDonation = cashOnHandsDonation;
+        this.cashOnHandsIGP = cashOnHandsIGP;
         this.transactionDate = transactionDate;
     }
+    private TransactionModel transactionModel;
+    public FetchAllTransactionModel(
+            TransactionModel t,
+            Double cashOnHandsCollection,
+            Double cashOnHandsDonation,
+            Double cashOnHandsIGP
+    ) {
+        this.transactionModel = t;
+        this.cashOnHandsCollection = cashOnHandsCollection;
+        this.cashOnHandsDonation = cashOnHandsDonation;
+        this.cashOnHandsIGP = cashOnHandsIGP;
+    }
+
 }
