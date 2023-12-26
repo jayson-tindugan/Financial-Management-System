@@ -6,7 +6,7 @@
     --white: hsl(0, 0%, 100%);
     --whitesmoke: hsl(0, 0%, 96%);
     --grey: hsl(0, 0%, 90%);
-    --black: hsl(0, 0%, 10%);
+    --black: hsl(0, 0%, 15%);
 }
 * {
     margin: 0;
@@ -14,5 +14,5 @@
     box-sizing: border-box;
 }
 html {
-    font-family: Helvetica, "Poppins", sans-serif;
+    font-family: Helvetica, "Poppins", sans-serif, serif;
 }

@@ -11,17 +11,17 @@
     align-items: center;
     color: var(--whitesmoke);
 }
-.container-bg{
+.container-bg {
     background-color: var(--darkgreen) !important;
     color: var(--whitesmoke) !important;
-   height: auto;
+    height: auto;
 }
-.table-bg{
+.table-bg {
     background-color: var(--darkgreen) !important;
     color: var(--whitesmoke) !important;
     height: 540px;
 }
-.button-bg{
+.button-bg {
     background-color: var(--green);
     color: var(--whitesmoke);
 }
@@ -238,98 +238,32 @@ ul .sub-menu {
     background-color: #ffffff;
 }
 /* PROFILE */
-/* .profile-page-container {
-    height: 100%;
-    display: flex;
-    gap: 10px;
-    margin: 10px;
-    padding: 2rem;
-}
-
-.column1,
-.column2 {
-    width: 100%;
-    padding: 1rem;
-    border-radius: 5px;
-}
-.column1 {
-    background-color: #ffffff;
-}
-.column2 {
-    padding: 0rem;
-    background-color: #c7c7c7;
-}
-
-.column1 p {
-    color: #6b966b;
-    font-size: 14px;
-}
-
-.displayPfp {
-    display: block;
-    text-align: center;
-    padding: 0rem;
-    margin: 1rem;
-}
-
-.pfp {
-    border: 3px solid #21401e;
-    width: 280px;
-    height: 280px;
-    border-radius: 5px;
-}
-
-.per-info-header {
-    border-radius: 5px 5px 0px 0px;
-    width: 100%;
-    background-color: #6b966b;
-    padding: 1rem;
-}
-
-.per-info-row {
-    padding: 2rem 1.5rem 1.5rem 2rem;
-    font-size: 18px;
-    border-bottom: 3px solid #6b966b;
-}
-
-.per-info-row p {
-    display: inline-flex;
-    float: right;
-    color: #6b966b;
-    font-size: 18px;
-}
-
-label {
-    display: inline-block;
-    color: #21401e;
-    font-size: 20px;
-}
-
-.icon-edit {
-    display: inline-flex;
-    background: none;
-    border: none;
-    height: 30px;
-    float: right;
-    margin: 3px 0px 3px 6px;
-} */
 .profile-content {
-    display: grid;
-    grid-template-columns: 0.4fr 1fr;
     font-size: 1.125rem;
 }
 .profile-details-header {
     background-color: var(--darkgreen);
 }
 .profile-body {
-    border-bottom: 3px solid var(--green);
+    display: grid;
+    grid-template-columns: 0.2fr 1fr;
+    border-bottom: 3px solid var(--darkgreen);
     padding: 1.5rem 2rem 0.25rem 2rem;
     background-color: var(--grey);
     align-items: end;
 }
 .profile-info {
     align-items: flex-end;
-    gap: 2rem;
     color: var(--green);
     text-transform: uppercase;
+    font-weight: bold;
+}
+.profile-info button {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--green);
+}
+.profile-info button:hover {
+    color: var(--darkgreen);
 }
