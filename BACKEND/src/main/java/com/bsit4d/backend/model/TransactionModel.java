@@ -36,7 +36,9 @@ public class TransactionModel {
     @OrderBy("transactionDate ASC")
     private LocalDateTime transactionDate;
 
+    // public TransactionModel() {
 
+    // }
 
     // Custom method to generate a formatted transactionId
     private String generateTransactionId() {

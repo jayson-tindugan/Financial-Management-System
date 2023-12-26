@@ -140,11 +140,19 @@ function Login() {
                                         <Icon.Eye
                                             className="sidebar-icons open pointer"
                                             color="black"
+                                            style={{
+                                                width: "20px",
+                                                height: "20px",
+                                            }}
                                         />
                                     ) : (
                                         <Icon.EyeSlash
                                             className="sidebar-icons close pointer"
                                             color="#716868"
+                                            style={{
+                                                width: "20px",
+                                                height: "20px",
+                                            }}
                                         />
                                     )}
                                 </div>

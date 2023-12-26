@@ -9,6 +9,7 @@ import MonthlyCollectionChart from "../../components/monthlyCollectionChart.tsx"
 import MonthlyDonationChart from "../../components/monthlyDonationChart.tsx";
 import MonthlyIgpChart from "../../components/monthlyIgpChart.tsx";
 import * as Icon from "react-bootstrap-icons";
+import "../../assets/css/global.css";
 
 function Userdashboard() {
     const accountDetails = LoginDetails();
