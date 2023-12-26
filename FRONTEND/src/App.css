@@ -5,6 +5,7 @@
     --lightgreen-hover: hsl(119, 17%, 55%);
     --white: hsl(0, 0%, 100%);
     --whitesmoke: hsl(0, 0%, 96%);
+    --grey: hsl(0, 0%, 90%);
     --black: hsl(0, 0%, 10%);
 }
 * {
