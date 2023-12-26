@@ -10,6 +10,7 @@ import MonthlyDonationChart from "../../components/monthlyDonationChart.tsx";
 import MonthlyIgpChart from "../../components/monthlyIgpChart.tsx";
 import * as Icon from "react-bootstrap-icons";
 import "../../assets/css/global.css";
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
 function Userdashboard() {
     const accountDetails = LoginDetails();
@@ -115,10 +116,26 @@ function Userdashboard() {
                         </div>
                     </div>
                 </div>
+                <br/>
+            <Row>
+                
+                <Col sm={4}>
+                <MonthlyCollectionChart/>
+                </Col>
+                <Col sm={4}>
+                <MonthlyDonationChart/>
+                </Col>
+                <Col sm={4}>
+                <MonthlyIgpChart/>
+                </Col>
+
+            </Row>
+               
+            <Col sm={6}>
                 <TotalCashflowChart/>
-                    <MonthlyCollectionChart/>
-                    <MonthlyDonationChart/>
-                    <MonthlyIgpChart/>
+                </Col>  
+                   
+                    
                     
             </div>
             <Sidebar isSidebarVisible={isSidebarVisible} />
