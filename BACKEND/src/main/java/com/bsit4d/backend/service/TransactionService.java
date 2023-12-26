@@ -78,7 +78,7 @@ public class TransactionService {
             balance += cashInflows - cashOutflows;
             transactionModel.setCashOnHands(balance);
         }
-       
+
         return transactionModels;
     }
 
