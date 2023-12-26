@@ -11,6 +11,20 @@
     align-items: center;
     color: var(--whitesmoke);
 }
+.container-bg{
+    background-color: var(--darkgreen) !important;
+    color: var(--whitesmoke) !important;
+   height: auto;
+}
+.table-bg{
+    background-color: var(--darkgreen) !important;
+    color: var(--whitesmoke) !important;
+    height: 540px;
+}
+.button-bg{
+    background-color: var(--green);
+    color: var(--whitesmoke);
+}
 .left-header-content {
     display: flex;
     align-items: center;
