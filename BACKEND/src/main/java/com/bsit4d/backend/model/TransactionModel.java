@@ -1,11 +1,14 @@
 package com.bsit4d.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 @NoArgsConstructor
 @Entity
@@ -15,11 +18,16 @@ public class TransactionModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Double id;
     @Column(unique = true)
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String transactionId;
-
+    @NotNull
     private String allocationType;
+    @NotNull
     private Double amount;
+    @NotNull
     private Double quantity;
+    @NotNull
     private Double total;
     private String transactionType;
     @Column(nullable = true)
@@ -28,25 +36,30 @@ public class TransactionModel {
     private String orNumber;
     @Column(nullable = true)
     private String remark;
+    @NotNull
     private Double idNumber;
+    @Column(nullable = true)
     private Double balance;
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
+    private LocalDateTime dateAdded;
+    @Temporal(TemporalType.DATE)
     @OrderBy("transactionDate ASC")
-    private LocalDateTime transactionDate;
+    private LocalDate transactionDate;
 
-    // public TransactionModel() {
-
-    // }
-
-    // Custom method to generate a formatted transactionId
-    private String generateTransactionId() {
-        String year = String.valueOf(LocalDate.now().getYear());
-
-        String uuid = UUID.randomUUID().toString().toUpperCase().substring(0, 6); // Use part of the UUID
-
-        return "BITS" + year + "-" + uuid;
+    @OneToMany(mappedBy = "transaction", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+    @JsonManagedReference
+    private List<TransactionVersionModel> transactionVersion;
+    @Version
+    private Long version;
+    @PrePersist
+    private void generateTransactionId() {
+        if (this.transactionId == null) {
+            String year = String.valueOf(LocalDate.now().getYear());
+            String uuid = UUID.randomUUID().toString().toUpperCase().substring(0, 6);
+            this.transactionId = "BITS" + year + "-" + uuid;
+        }
     }
 
 
@@ -152,15 +165,23 @@ public class TransactionModel {
         }
     }
 
-    public LocalDateTime getTransactionDate() {
+    public LocalDate getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(LocalDateTime transactionDate) {
+    public void setTransactionDate(LocalDate transactionDate) {
         this.transactionDate = transactionDate;
     }
 
-    public TransactionModel(Double id, String transactionId, String allocationType, Double amount, Double quantity, Double total, String transactionType, String particular, String orNumber, String remark, Double idNumber, Double balance, LocalDateTime transactionDate) {
+    public LocalDateTime getDateAdded() {
+        return dateAdded;
+    }
+
+    public void setDateAdded(LocalDateTime dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public TransactionModel(Double id, String transactionId, String allocationType, Double amount, Double quantity, Double total, String transactionType, String particular, String orNumber, String remark, Double idNumber, Double balance, LocalDate transactionDate, LocalDateTime dateAdded, Long version) {
         this.id = id;
         this.transactionId = transactionId;
         this.allocationType = allocationType;
@@ -174,5 +195,23 @@ public class TransactionModel {
         this.idNumber = idNumber;
         balance = balance;
         this.transactionDate = transactionDate;
+        this.dateAdded = dateAdded;
+        this.version = version;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    public List<TransactionVersionModel> getTransactionVersion() {
+        return transactionVersion;
+    }
+
+    public void setTransactionVersion(List<TransactionVersionModel> transactionVersion) {
+        this.transactionVersion = transactionVersion;
     }
 }

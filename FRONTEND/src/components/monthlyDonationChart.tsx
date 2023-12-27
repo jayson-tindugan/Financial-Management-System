@@ -40,7 +40,7 @@ const MonthlyDonationChart = () => {
     const fetchData = async () => {
       try {
         axios.defaults.withCredentials = true;
-        const response = await axios.get('http://localhost:8001/transaction/monthlyCollection');
+        const response = await axios.get('http://localhost:8001/transaction/monthlyDonation');
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error.response?.data.message || 'Unknown error');
@@ -60,7 +60,7 @@ const MonthlyDonationChart = () => {
   }
 
   if (!Array.isArray(data) || data.length === 0) {
-    return <div>Data structure is not as expected.</div>;
+    return <div>No chart data</div>;
   }
 
   const chartData = {

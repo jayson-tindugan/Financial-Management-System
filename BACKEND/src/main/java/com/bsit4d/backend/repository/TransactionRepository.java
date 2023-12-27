@@ -78,17 +78,18 @@ List<TransactionModel> findAllByAllocationTypeInOrderByTransactionDateDesc(List<
             "            SUM(CASE WHEN t.transactionType = 'Outflow' THEN t.total ELSE 0 END) AS cashOutflows," +
             "              SUM(CASE WHEN t.transactionType = 'INFLOW' THEN t.total ELSE - t.total END))" +
             "            FROM com.bsit4d.backend.model.TransactionModel t\n" +
-            "            WHERE t.allocationType = 'COLLECTION' GROUP BY YEAR(t.transactionDate), MONTH(t.transactionDate) \n" +
-            "            ORDER BY YEAR(t.transactionDate) ASC, MONTH(t.transactionDate) ASC")
+            "            WHERE t.allocationType = 'COLLECTION' GROUP BY YEAR(t.transactionDate), MONTHNAME(t.transactionDate), t.transactionDate \n" +
+            "            ORDER BY YEAR(t.transactionDate) ASC, MONTH(t.transactionDate) ASC, t.transactionDate")
     List<MonthlyCashflowModel> getMonthlyCollection();
 
-    @Query(value = "SELECT NEW com.bsit4d.backend.model.MonthlyCashflowModel(MONTHNAME(t.transactionDate) AS month, \n" +
+
+    @Query(value = "SELECT NEW com.bsit4d.backend.model.MonthlyCashflowModel (MONTHNAME(t.transactionDate) AS month, \n" +
             "            SUM(CASE WHEN t.transactionType = 'Inflow' THEN t.total ELSE 0 END) AS cashInflows, \n" +
             "            SUM(CASE WHEN t.transactionType = 'Outflow' THEN t.total ELSE 0 END) AS cashOutflows," +
             "              SUM(CASE WHEN t.transactionType = 'INFLOW' THEN t.total ELSE - t.total END))" +
             "            FROM com.bsit4d.backend.model.TransactionModel t\n" +
-            "            WHERE t.allocationType = 'DONATION' GROUP BY YEAR(t.transactionDate), MONTH(t.transactionDate) \n" +
-            "            ORDER BY YEAR(t.transactionDate) ASC, MONTH(t.transactionDate) ASC")
+            "            WHERE t.allocationType = 'DONATION' GROUP BY YEAR(t.transactionDate), MONTHNAME(t.transactionDate), t.transactionDate \n" +
+            "            ORDER BY YEAR(t.transactionDate) ASC, MONTH(t.transactionDate) ASC, t.transactionDate")
     List<MonthlyCashflowModel> getMonthlyDonation();
 
     @Query(value = "SELECT NEW com.bsit4d.backend.model.MonthlyCashflowModel(MONTHNAME(t.transactionDate) AS month, \n" +
@@ -96,13 +97,15 @@ List<TransactionModel> findAllByAllocationTypeInOrderByTransactionDateDesc(List<
             "            SUM(CASE WHEN t.transactionType = 'Outflow' THEN t.total ELSE 0 END) AS cashOutflows," +
             "              SUM(CASE WHEN t.transactionType = 'INFLOW' THEN t.total ELSE - t.total END))" +
             "            FROM com.bsit4d.backend.model.TransactionModel t\n" +
-            "            WHERE t.allocationType = 'IGP' GROUP BY YEAR(t.transactionDate), MONTH(t.transactionDate) \n" +
-            "            ORDER BY YEAR(t.transactionDate) ASC, MONTH(t.transactionDate) ASC")
+            "            WHERE t.allocationType = 'IGP' GROUP BY YEAR(t.transactionDate), MONTHNAME(t.transactionDate), t.transactionDate \n" +
+            "            ORDER BY YEAR(t.transactionDate) ASC, MONTH(t.transactionDate) ASC, t.transactionDate")
     List<MonthlyCashflowModel> getMonthlyIgp();
 
     //for displaying all transaction
     List<TransactionModel> findByAllocationType(String allocationType);
 
-
+    @Query("SELECT t FROM TransactionModel t JOIN FETCH t.transactionVersion")
+    List<TransactionModel> findAllWithTransactionVersion();
+    List<TransactionModel> findByIdNumber(Long idNumber);
 
 }

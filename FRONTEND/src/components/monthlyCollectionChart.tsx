@@ -60,7 +60,7 @@ const MonthlyCollectionChart = () => {
   }
 
   if (!Array.isArray(data) || data.length === 0) {
-    return <div>Data structure is not as expected.</div>;
+    return <div>No chart data</div>;
   }
 
   const chartData = {
