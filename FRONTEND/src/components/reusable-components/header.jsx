@@ -1,6 +1,6 @@
-import Toggle from "../../components/reusable-components/toggleButton.jsx";
+import Toggle from "./ToggleButton.jsx";
 import BITS_LOGO from "../../assets/img/BITS_LOGO.png";
-import LogoutButton from "../../components/reusable-components/logout.jsx";
+import LogoutButton from "./Logout.jsx";
 
 function Header({ toggleSidebar }) {
     return (

@@ -237,6 +237,12 @@ ul .sub-menu {
     flex-direction: column;
     background-color: #ffffff;
 }
+@media screen and (max-width: 36em) {
+    .dashboard-card,
+    .card-content {
+        grid-template-columns: 1fr;
+    }
+}
 /* PROFILE */
 .profile-content {
     font-size: 1.125rem;
@@ -266,4 +272,22 @@ ul .sub-menu {
 }
 .profile-info button:hover {
     color: var(--darkgreen);
+}
+/* BAD REQUEST STYLES */
+.bad-request {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.bad-request-btn-wrapper button {
+    padding: 0.75rem 0.5rem;
+    border: none;
+    background-color: var(--green);
+    outline: none;
+    color: var(--white);
+    border-radius: 10px;
+}
+.bad-request-btn-wrapper button:hover {
+    background-color: var(--lightgreen-hover);
 }

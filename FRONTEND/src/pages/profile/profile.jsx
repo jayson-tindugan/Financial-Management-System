@@ -1,12 +1,14 @@
 // Userdashboard.jsx
 import React, { useState } from "react";
-import Header from "../../components/reusable-components/header.jsx";
-import Sidebar from "../../components/reusable-components/sidebar.jsx";
-import ProfileBody from "../../components/non-reusable-components/profileBody.jsx";
-import InputModal from "../../components/reusable-components/modal.jsx";
-import LoginDetails from "../../components/loginDetails.jsx";
+import {
+    LoginDetails,
+    Header,
+    Sidebar,
+    MainGreetings,
+    Modal,
+} from "../../components/reusable-components/ReusableComponents.js";
+import ProfileBody from "../../components/non-reusable-components/ProfileBody.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
-import * as Icon from "react-bootstrap-icons";
 import "../../assets/css/global.css";
 
 function Profile() {
@@ -35,7 +37,7 @@ function Profile() {
     };
     const generateInputModal = (key, label, placeholder) => {
         return (
-            <InputModal
+            <Modal
                 key={key}
                 show={showModals[key] || false}
                 handleClose={() => handleClose(key)}
@@ -52,7 +54,7 @@ function Profile() {
                         />
                     </div>
                 </form>
-            </InputModal>
+            </Modal>
         );
     };
 
@@ -69,7 +71,7 @@ function Profile() {
         },
         {
             key: "middleInitialModal",
-            label: "Middle Initial",
+            label: "Middle Name",
             value: accountDetails.middleName,
         },
         {
@@ -92,25 +94,7 @@ function Profile() {
                     isSidebarVisible ? " sidebar-open" : ""
                 }`}
             >
-                <div className="greeting-section">
-                    {/* Greetings */}
-                    <div className="greetings">
-                        <Icon.PersonFill width={40} height={40} />
-                        <h4>
-                            Hi{" "}
-                            <b>
-                                {accountDetails.firstName +
-                                    " " +
-                                    accountDetails.lastName +
-                                    "!"}
-                            </b>
-                        </h4>
-                    </div>
-                    {/* Org.Name */}
-                    <div className="org-name">
-                        <h4>Builders of Innovative Technologist Society</h4>
-                    </div>
-                </div>
+                <MainGreetings />
                 <div className="">
                     <div className="profile-content">
                         <div className="profile-details-header p-2">
