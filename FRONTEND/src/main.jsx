@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
+    Forgot,
     Dashboard,
     Officer,
     Transaction,
@@ -17,6 +18,13 @@ const router = createBrowserRouter([
         path: "/",
         element: <App />,
     },
+
+    // Forgot / index route
+    {
+        path: "/Forgot",
+        element: <Forgot />,
+    },
+
     // dashboard module
     {
         path: "/Dashboard",
