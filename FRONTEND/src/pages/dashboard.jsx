@@ -13,9 +13,9 @@ import MonthlyIgpChart from "../components/monthlyIgpChart.jsx";
 import * as Icon from "react-bootstrap-icons";
 import "../assets/css/global.css";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import LoginHistory from "../../components/loginHistory.jsx";
-import OfficerCount from "../../components/officerCount.jsx";
-import { getBalanceCounts} from "../../components/balanceCount.jsx";
+import LoginHistory from "../components/loginHistory.jsx";
+import OfficerCount from "../components/officerCount.jsx";
+import { getBalanceCounts} from "../components/balanceCount.jsx";
 function Userdashboard() {
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
