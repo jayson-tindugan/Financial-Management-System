@@ -3,10 +3,10 @@ import {
     Header,
     Sidebar,
     MainGreetings,
-} from "../../components/reusable-components/ReusableComponents.js";
+} from "../components/reusable-components/ReusableComponents.js";
 import { Button, Form, Table, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../assets/css/global.css";
+import "../assets/css/global.css";
 
 function Officer() {
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);

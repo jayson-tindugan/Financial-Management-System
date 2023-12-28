@@ -4,14 +4,14 @@ import {
     Header,
     Sidebar,
     MainGreetings,
-} from "../../components/reusable-components/ReusableComponents.js";
+} from "../components/reusable-components/ReusableComponents.js";
 import "bootstrap/dist/css/bootstrap.min.css";
-import TotalCashflowChart from "../../components/totalCashflowChart.jsx";
-import MonthlyCollectionChart from "../../components/monthlyCollectionChart.jsx";
-import MonthlyDonationChart from "../../components/monthlyDonationChart.jsx";
-import MonthlyIgpChart from "../../components/monthlyIgpChart.jsx";
+import TotalCashflowChart from "../components/totalCashflowChart.jsx";
+import MonthlyCollectionChart from "../components/monthlyCollectionChart.jsx";
+import MonthlyDonationChart from "../components/monthlyDonationChart.jsx";
+import MonthlyIgpChart from "../components/monthlyIgpChart.jsx";
 import * as Icon from "react-bootstrap-icons";
-import "../../assets/css/global.css";
+import "../assets/css/global.css";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 
 function Userdashboard() {

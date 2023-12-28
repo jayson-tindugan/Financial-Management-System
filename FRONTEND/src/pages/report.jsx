@@ -3,9 +3,9 @@ import {
     Header,
     Sidebar,
     MainGreetings,
-} from "../../components/reusable-components/ReusableComponents.js";
+} from "../components/reusable-components/ReusableComponents.js";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../assets/css/global.css";
+import "../assets/css/global.css";
 import { useReactToPrint } from "react-to-print"; //npm i react-to-print
 import { useDownloadExcel } from "react-export-table-to-excel"; //npm i react-export-table-to-excel
 

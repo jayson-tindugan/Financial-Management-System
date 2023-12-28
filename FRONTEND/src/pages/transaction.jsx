@@ -4,12 +4,12 @@ import {
     Header,
     Sidebar,
     MainGreetings,
-} from "../../components/reusable-components/ReusableComponents.js";
+} from "../components/reusable-components/ReusableComponents.js";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../assets/css/global.css";
-import TransactionForm from "../../components/transactionForm.jsx";
+import "../assets/css/global.css";
+import TransactionForm from "../components/transactionForm.jsx";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import TransactionTable from "../../components/transactionTable.jsx";
+import TransactionTable from "../components/transactionTable.jsx";
 
 function Transaction() {
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);

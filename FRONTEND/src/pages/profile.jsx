@@ -6,10 +6,10 @@ import {
     Sidebar,
     MainGreetings,
     Modal,
-} from "../../components/reusable-components/ReusableComponents.js";
-import ProfileBody from "../../components/non-reusable-components/ProfileBody.jsx";
+} from "../components/reusable-components/ReusableComponents.js";
+import ProfileBody from "../components/non-reusable-components/ProfileBody.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../assets/css/global.css";
+import "../assets/css/global.css";
 
 function Profile() {
     const accountDetails = LoginDetails();
@@ -86,6 +86,21 @@ function Profile() {
     const inputModals = profileBodyFields.map(({ key, label, value }) =>
         generateInputModal(key, label, value)
     );
+
+    const handleDeactivateAccount = () => {
+        setShowModals({ showModals, deactivateModal: true }); // Show deactivate modal when deactivating account is triggered
+    };
+
+    const handleCloseModal = (key) => {
+        setShowModals({ showModals, [key]: false }); // Close modal
+    };
+
+    const handleConfirmDeactivate = () => {
+        // Logic to deactivate the account
+        // ...
+
+        setShowModals({ showModals, deactivateModal: false }); // Close modal after deactivation
+    };
     return (
         <div>
             <Header toggleSidebar={toggleSidebar} />
@@ -96,6 +111,13 @@ function Profile() {
             >
                 <MainGreetings />
                 <div className="">
+                    {accountDetails.role !== "ADMIN" && (
+                        <div className="profile-btn-wrapper d-flex justify-content-end">
+                            <button className="btn btn-outline-danger mb-3">
+                                Deactivate Account
+                            </button>
+                        </div>
+                    )}
                     <div className="profile-content">
                         <div className="profile-details-header p-2">
                             <h4 className="p-0 m-0 text-white">
@@ -114,6 +136,14 @@ function Profile() {
                     </div>
                 </div>
                 {inputModals}
+                <Modal
+                    show={showModals.deactivateModal || false}
+                    handleClose={() => handleCloseModal("deactivateModal")}
+                    handleSave={handleConfirmDeactivate}
+                    modalTitle="Confirmation"
+                >
+                    <p>Are you sure you want to deactivate your account?</p>
+                </Modal>
             </div>
             <Sidebar isSidebarVisible={isSidebarVisible} />
         </div>
