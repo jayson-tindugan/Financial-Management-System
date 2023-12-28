@@ -15,4 +15,6 @@
 }
 html {
     font-family: Helvetica, "Poppins", sans-serif, serif;
+    letter-spacing: 1px;
+    line-height: 1.2;
 }

@@ -4,18 +4,21 @@ import {
     Header,
     Sidebar,
     MainGreetings,
+<<<<<<< HEAD
+    TotalCashflowChart,
+    MonthlyCollectionChart,
+    MonthlyDonationChart,
+    MonthlyIgpChart,
+    LoginHistory,
+    OfficerCount,
+    BalanceCount,
+=======
+>>>>>>> bbc8b3787523970c83a3c6c1d811a5ef97875b60
 } from "../components/Components.js";
 import "bootstrap/dist/css/bootstrap.min.css";
-import TotalCashflowChart from "../components/totalCashflowChart.jsx";
-import MonthlyCollectionChart from "../components/monthlyCollectionChart.jsx";
-import MonthlyDonationChart from "../components/monthlyDonationChart.jsx";
-import MonthlyIgpChart from "../components/monthlyIgpChart.jsx";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 import "../assets/css/global.css";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import LoginHistory from "../components/loginHistory.jsx";
-import OfficerCount from "../components/officerCount.jsx";
-import { getBalanceCounts } from "../components/balanceCount.jsx";
 function Userdashboard() {
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
