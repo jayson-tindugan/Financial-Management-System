@@ -3,15 +3,15 @@ import React, { useState } from "react";
 import Header from "../../components/reusable-components/header.jsx";
 import Sidebar from "../../components/reusable-components/sidebar.jsx";
 import LoginDetails from "../../components/loginDetails.jsx";
-import "bootstrap/dist/css/bootstrap.min.css";
-import TotalCashflowChart from "../../components/totalCashflowChart.tsx";
-import MonthlyCollectionChart from "../../components/monthlyCollectionChart.tsx";
-import MonthlyDonationChart from "../../components/monthlyDonationChart.tsx";
-import MonthlyIgpChart from "../../components/monthlyIgpChart.tsx";
+
+import TotalCashflowChart from "../../components/totalCashflowChart.jsx";
+import MonthlyCollectionChart from "../../components/monthlyCollectionChart.jsx";
+import MonthlyDonationChart from "../../components/monthlyDonationChart.jsx";
+import MonthlyIgpChart from "../../components/monthlyIgpChart.jsx";
 import * as Icon from "react-bootstrap-icons";
 import "../../assets/css/global.css";
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-
+import {  Row, Col } from 'react-bootstrap';
+import "bootstrap/dist/css/bootstrap.min.css";
 function Userdashboard() {
     const accountDetails = LoginDetails();
 
@@ -117,25 +117,33 @@ function Userdashboard() {
                     </div>
                 </div>
                 <br/>
-            <Row>
-                
-                <Col sm={4}>
-                <MonthlyCollectionChart/>
+            <Row className="my-3">
+                <Col sm={4} >
+                <div className="rounded-2 border  p-1 shadow-sm" style ={{height: "215px"}}>
+                        <MonthlyCollectionChart />
+                    </div>
                 </Col>
-                <Col sm={4}>
-                <MonthlyDonationChart/>
-                </Col>
-                <Col sm={4}>
-                <MonthlyIgpChart/>
-                </Col>
+                <Col sm={4} >
+                <div className="rounded-2 border  p-1 shadow-sm" style ={{height: "215px"}}>
 
+                    <MonthlyDonationChart/>
+                    </div>
+                </Col>
+                <Col sm={4} >
+                    <div className="rounded-2 border  p-1 shadow-sm" style ={{height: "215px"}}>
+                    <MonthlyIgpChart/>
+                    </div>
+                </Col>
             </Row>
-               
-            <Col sm={6}>
+               <Row className="my-4">
+               <Col sm={6}>
+                <div className="rounded-2 border  p-1 shadow-sm">
                 <TotalCashflowChart/>
+                </div>
                 </Col>  
+               </Row>
+            
                    
-                    
                     
             </div>
             <Sidebar isSidebarVisible={isSidebarVisible} />

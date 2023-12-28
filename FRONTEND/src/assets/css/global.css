@@ -15,6 +15,12 @@
     background-color: var(--darkgreen) !important;
     color: var(--whitesmoke) !important;
     height: auto;
+    min-height: 499px;
+}
+.container-bg2 {
+    background-color: var(--darkgreen) !important;
+    color: var(--whitesmoke) !important;
+    height: auto;
 }
 .table-bg {
     background-color: var(--darkgreen) !important;
