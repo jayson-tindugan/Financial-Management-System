@@ -1,15 +1,11 @@
 // Userdashboard.jsx
 import React, { useState } from "react";
-import {
-    Header,
-    Sidebar,
-    MainGreetings,
-    TransactionForm,
-    TransactionTable,
-} from "../components/Components.js";
+import { Header, Sidebar, MainGreetings } from "../components/Components.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/global.css";
+import TransactionForm from "../components/transactionForm.jsx";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import TransactionTable from "../components/transactionTable4.jsx";
 
 function Transaction() {
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
