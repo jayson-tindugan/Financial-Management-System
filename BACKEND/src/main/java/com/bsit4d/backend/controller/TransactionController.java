@@ -91,10 +91,7 @@ public class TransactionController {
         return transactionService.findAllTransactionsWithBalance();
     }
 
-    @GetMapping("/fetchAll2")
-    public List<TransactionModel> getAllTransactions() {
-        return transactionService.getAllTransactions();
-    }
+
     @PutMapping("/update/{transactionId}")
     public ResponseEntity<String> updateTransaction(@PathVariable String transactionId, @RequestBody TransactionModel updatedTransaction) {
         try {

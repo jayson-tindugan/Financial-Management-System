@@ -71,8 +71,9 @@ public interface TransactionRepository extends JpaRepository<TransactionModel, L
 //            "ORDER BY\n" +
 //            "   t.transactionDate DESC\n")
 //    List<FetchAllTransactionModel> findAllTransactions();
-@Query(value = "Select * FROM transaction order by transactionDate ASC", nativeQuery = true)
+@Query(value = "SELECT t FROM TransactionModel t JOIN FETCH t.transactionVersion tv ORDER BY t.transactionDate ASC, tv.changeTime DESC")
 List<TransactionModel> findAllByAllocationTypeInOrderByTransactionDateDesc(List<String> allocationTypes);
+
     @Query(value = "SELECT NEW com.bsit4d.backend.model.MonthlyCashflowModel(MONTHNAME(t.transactionDate) AS month, \n" +
             "            SUM(CASE WHEN t.transactionType = 'Inflow' THEN t.total ELSE 0 END) AS cashInflows, \n" +
             "            SUM(CASE WHEN t.transactionType = 'Outflow' THEN t.total ELSE 0 END) AS cashOutflows," +
