@@ -1,9 +1,5 @@
 import React, { useState, useRef } from "react";
-import {
-    Header,
-    Sidebar,
-    MainGreetings,
-} from "../components/reusable-components/ReusableComponents.js";
+import { Header, Sidebar, MainGreetings } from "../components/Components.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/global.css";
 import { useReactToPrint } from "react-to-print"; //npm i react-to-print

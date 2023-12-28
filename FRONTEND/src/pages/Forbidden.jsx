@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/css/global.css";
 
-function BadRequest() {
+function Forbidden() {
     const navigate = useNavigate();
 
     const redirectToDashboard = () => {
@@ -11,9 +11,9 @@ function BadRequest() {
 
     return (
         <div className="bad-request d-flex flex-column justify-content-center">
-            <h1 style={{ fontSize: "3rem" }}>Error: 400 - Bad Request</h1>
+            <h1 style={{ fontSize: "3rem" }}>Error: 403 - Access Forbidden</h1>
             <p style={{ fontSize: "1.25rem" }} className="text-center">
-                Your request resulted in an error.
+                You do not have permission to access this resource
             </p>
             <div className="bad-request-btn-wrapper d-flex justify-content-center">
                 <button
@@ -27,4 +27,4 @@ function BadRequest() {
     );
 }
 
-export default BadRequest;
+export default Forbidden;

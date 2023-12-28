@@ -1,7 +1,14 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 
-function InputModal({ show, handleClose, handleSave, children, modalTitle }) {
+function InputModal({
+    show,
+    handleClose,
+    handleSave,
+    children,
+    modalTitle,
+    buttonText,
+}) {
     return (
         <Modal
             show={show}
@@ -11,8 +18,6 @@ function InputModal({ show, handleClose, handleSave, children, modalTitle }) {
             keyboard={false}
         >
             <Modal.Header closeButton={false}>
-                {" "}
-                {/* Set closeButton prop to false */}
                 <Modal.Title>{modalTitle}</Modal.Title>
             </Modal.Header>
             <Modal.Body>{children}</Modal.Body>
@@ -20,9 +25,15 @@ function InputModal({ show, handleClose, handleSave, children, modalTitle }) {
                 <Button variant="light" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="success" onClick={handleSave}>
-                    Update
-                </Button>
+                {buttonText === "Confirm" ? (
+                    <Button variant="danger" onClick={handleSave}>
+                        {buttonText}
+                    </Button>
+                ) : (
+                    <Button variant="success" onClick={handleSave}>
+                        Update
+                    </Button>
+                )}
             </Modal.Footer>
         </Modal>
     );

@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-    Header,
-    Sidebar,
-    MainGreetings,
-} from "../components/reusable-components/ReusableComponents.js";
+import { Header, Sidebar, MainGreetings } from "../components/Components.js";
 import { Button, Form, Table, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/global.css";

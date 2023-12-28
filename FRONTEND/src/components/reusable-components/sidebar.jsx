@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import LoginDetails from "./loginDetails.jsx";
+import LoginDetails from "./LoginDetails.jsx";
 import * as Icon from "react-bootstrap-icons";
 
 function Sidebar({ isSidebarVisible }) {

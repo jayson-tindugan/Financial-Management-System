@@ -5,19 +5,17 @@ import "./App.css";
 import {
     createBrowserRouter,
     RouterProvider,
-    Navigate,
     useNavigate,
 } from "react-router-dom";
-import { LoginDetails } from "./components/reusable-components/ReusableComponents.js";
+import { LoginDetails } from "./components/Components.js";
 import {
-    Forgot,
     Dashboard,
     Officer,
     Transaction,
     Report,
     Profile,
     PageNotFound,
-    BadRequest,
+    Forbidden,
 } from "./pages/index.js";
 
 const allowedRoles = {
@@ -42,7 +40,7 @@ const ProtectedRoute = ({ element, path }) => {
     // Check if the user's role is allowed for the current route
     if (!allowedRoles[path].includes(accountDetails.role)) {
         // If the user's role isn't allowed for this endpoint, redirect to Bad Request
-        navigate("/BadRequest");
+        navigate("/ForbiddenAccess");
         return null; // Return null or a loading component if needed
     }
 
@@ -52,8 +50,8 @@ const ProtectedRoute = ({ element, path }) => {
 const router = createBrowserRouter([
     // Bad Request route
     {
-        path: "/BadRequest",
-        element: <BadRequest />,
+        path: "/ForbiddenAccess",
+        element: <Forbidden />,
     },
     // Page not found route
     {
@@ -67,11 +65,10 @@ const router = createBrowserRouter([
     },
 
     // Forgot / index route
-    {
-        path: "/Forgot",
-        element: <Forgot />,
-    },
-
+    // {
+    //     path: "/Forgot",
+    //     element: <Forgot />,
+    // },
     // dashboard module
     {
         path: "/Dashboard",

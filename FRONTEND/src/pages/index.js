@@ -1,11 +1,11 @@
 /* IMPORTING FILES FOR ROUTING */
-import { default as Dashboard } from "./dashboard/dashboard.jsx";
-import { default as Officer } from "./officermodule/officer.jsx";
-import { default as Transaction } from "./transactionmodule/transaction.jsx";
-import { default as Report } from "./reportmodule/report.jsx";
-import { default as Profile } from "./profile/profile.jsx";
+import { default as Dashboard } from "./Dashboard.jsx";
+import { default as Officer } from "./Officer.jsx";
+import { default as Transaction } from "./Transaction.jsx";
+import { default as Report } from "./Report.jsx";
+import { default as Profile } from "./Profile.jsx";
 import { default as PageNotFound } from "./PageNotFound.jsx";
-import { default as BadRequest } from "./BadRequest.jsx";
+import { default as Forbidden } from "./Forbidden.jsx";
 
 /* EXPORT ALL IMPORTED PAGES */
 export { Dashboard };
@@ -14,4 +14,4 @@ export { Transaction };
 export { Report };
 export { Profile };
 export { PageNotFound };
-export { BadRequest };
+export { Forbidden };

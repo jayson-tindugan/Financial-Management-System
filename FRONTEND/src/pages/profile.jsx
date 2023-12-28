@@ -6,7 +6,7 @@ import {
     Sidebar,
     MainGreetings,
     Modal,
-} from "../components/reusable-components/ReusableComponents.js";
+} from "../components/Components.js";
 import ProfileBody from "../components/non-reusable-components/ProfileBody.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/global.css";
@@ -88,7 +88,11 @@ function Profile() {
     );
 
     const handleDeactivateAccount = () => {
-        setShowModals({ showModals, deactivateModal: true }); // Show deactivate modal when deactivating account is triggered
+        setShowModals({
+            showModals,
+            deactivateModal: true,
+            buttonText: "Confirm",
+        });
     };
 
     const handleCloseModal = (key) => {
@@ -113,7 +117,10 @@ function Profile() {
                 <div className="">
                     {accountDetails.role !== "ADMIN" && (
                         <div className="profile-btn-wrapper d-flex justify-content-end">
-                            <button className="btn btn-outline-danger mb-3">
+                            <button
+                                className="btn btn-outline-danger mb-3"
+                                onClick={handleDeactivateAccount} // Add onClick event to trigger deactivation modal
+                            >
                                 Deactivate Account
                             </button>
                         </div>
@@ -141,6 +148,7 @@ function Profile() {
                     handleClose={() => handleCloseModal("deactivateModal")}
                     handleSave={handleConfirmDeactivate}
                     modalTitle="Confirmation"
+                    buttonText={showModals.buttonText || "Update"} // Pass buttonText prop
                 >
                     <p>Are you sure you want to deactivate your account?</p>
                 </Modal>

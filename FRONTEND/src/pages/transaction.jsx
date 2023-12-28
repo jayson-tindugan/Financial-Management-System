@@ -1,10 +1,6 @@
 // Userdashboard.jsx
 import React, { useState } from "react";
-import {
-    Header,
-    Sidebar,
-    MainGreetings,
-} from "../components/reusable-components/ReusableComponents.js";
+import { Header, Sidebar, MainGreetings } from "../components/Components.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/global.css";
 import TransactionForm from "../components/transactionForm.jsx";

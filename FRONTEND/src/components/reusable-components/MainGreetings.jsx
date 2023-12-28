@@ -1,5 +1,5 @@
 import React from "react";
-import LoginDetails from "./loginDetails.jsx";
+import LoginDetails from "./LoginDetails.jsx";
 import * as Icon from "react-bootstrap-icons";
 
 function MainGreetings() {
