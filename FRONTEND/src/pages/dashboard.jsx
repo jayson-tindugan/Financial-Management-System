@@ -4,6 +4,7 @@ import {
     Header,
     Sidebar,
     MainGreetings,
+<<<<<<< HEAD
     TotalCashflowChart,
     MonthlyCollectionChart,
     MonthlyDonationChart,
@@ -11,6 +12,8 @@ import {
     LoginHistory,
     OfficerCount,
     BalanceCount,
+=======
+>>>>>>> bbc8b3787523970c83a3c6c1d811a5ef97875b60
 } from "../components/Components.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
