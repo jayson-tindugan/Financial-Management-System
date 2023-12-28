@@ -17,10 +17,10 @@ function InputModal({ show, handleClose, handleSave, children, modalTitle }) {
             </Modal.Header>
             <Modal.Body>{children}</Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
+                <Button variant="light" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={handleSave}>
+                <Button variant="success" onClick={handleSave}>
                     Update
                 </Button>
             </Modal.Footer>

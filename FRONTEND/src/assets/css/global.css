@@ -15,6 +15,12 @@
     background-color: var(--darkgreen) !important;
     color: var(--whitesmoke) !important;
     height: auto;
+    min-height: 499px;
+}
+.container-bg2 {
+    background-color: var(--darkgreen) !important;
+    color: var(--whitesmoke) !important;
+    height: auto;
 }
 .table-bg {
     background-color: var(--darkgreen) !important;
@@ -237,6 +243,12 @@ ul .sub-menu {
     flex-direction: column;
     background-color: #ffffff;
 }
+@media screen and (max-width: 36em) {
+    .dashboard-card,
+    .card-content {
+        grid-template-columns: 1fr;
+    }
+}
 /* PROFILE */
 .profile-content {
     font-size: 1.125rem;
@@ -266,4 +278,82 @@ ul .sub-menu {
 }
 .profile-info button:hover {
     color: var(--darkgreen);
+}
+/* BAD REQUEST STYLES */
+.bad-request {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.bad-request-btn-wrapper button {
+    padding: 0.75rem 0.5rem;
+    border: none;
+    background-color: var(--green);
+    outline: none;
+    color: var(--white);
+    border-radius: 10px;
+}
+.bad-request-btn-wrapper button:hover {
+    background-color: var(--lightgreen-hover);
+}
+/* REPORT PAGE STYLES */
+.rep-pg-container {
+    background-color: var(--whitesmoke);
+    min-height: calc(100vh - 60px);
+    padding: 1rem;
+}
+
+.row1,
+.row2 {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    margin: 5px;
+    gap: 20px;
+    padding: 0.5rem;
+}
+
+.column1 {
+    width: 100%;
+    padding: 0rem;
+    border-radius: 5px;
+    background-color: #526051;
+}
+
+.column2 {
+    width: auto;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: #526051;
+    text-align: center;
+}
+
+.tbl-header {
+    border-radius: 5px 5px 0px 0px;
+    width: 100%;
+    background-color: #526051;
+    padding: 0.7rem;
+}
+
+input[type="date"] {
+    margin: 8px;
+}
+
+.label-export,
+.btn-export {
+    font-size: 16px;
+    font-weight: bolder;
+    padding: 8px;
+    color: #ffffff;
+}
+
+.btn-export {
+    background-color: #6b966b;
+    text-align: center;
+    margin: 8px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }

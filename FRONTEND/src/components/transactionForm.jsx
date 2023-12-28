@@ -21,6 +21,7 @@ const TransactionForm = () => {
   const [quantity, setQuantity] = useState('');
   const [total, setTotal] = useState('');
   const [remark, setRemark] = useState('');
+  const [transactionDate, setTransactionDate] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [showModal, setShowModal] = useState(false);
 
@@ -84,6 +85,7 @@ const TransactionForm = () => {
         orNumber = 'N/A';
       }
       const response = await axios.post('http://localhost:8001/transaction/save', {
+        transactionDate: transactionDate,
         transactionType: transactionType,
         allocationType: allocationType,
         amount: amount,
@@ -217,6 +219,11 @@ const TransactionForm = () => {
               <Form.Label>Total:</Form.Label>
               <Form.Control type="text" id="total" value={total} readOnly />
             </Col>
+            <Col sm={6}>
+              <Form.Label>Date:</Form.Label>
+              <Form.Control type="date" id="transactionDate" value={transactionDate} 
+              onChange={(e) => setTransactionDate(e.target.value)} required />
+            </Col>
           </Row>
 
           <Row className="mb-3">
@@ -249,12 +256,13 @@ const TransactionForm = () => {
       <Modal show={showModal} onHide={handleModalClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>
-            <h3 className="d-flex justify-content-center" style={{ color: 'green' }}>
-              Success <Icon.Check2Circle />
-            </h3>
+           
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+        <h3 className="d-flex justify-content-center" style={{ color: 'green' }}>
+              Success <Icon.Check2Circle />
+            </h3>
           <p className="d-flex justify-content-center">Transaction has been submitted successfully.</p>
         </Modal.Body>
         <Modal.Footer>

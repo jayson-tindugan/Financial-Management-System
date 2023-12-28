@@ -3,18 +3,24 @@ package com.bsit4d.backend.service;
 
 import com.bsit4d.backend.model.*;
 import com.bsit4d.backend.repository.TransactionRepository;
+import com.bsit4d.backend.repository.TransactionVersionRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransactionService {
     @Autowired
     private TransactionRepository transactionRepository;
+    @Autowired
+    private TransactionVersionRepository transactionVersionRepository;
     @Autowired
     private EntityManager entityManager;
     @Autowired
@@ -32,6 +38,46 @@ public class TransactionService {
             return e.getMessage();
         }
     }
+
+
+    public String updateTransaction(String transactionId, TransactionModel updatedTransaction) {
+        try {
+            TransactionModel existingTransaction = transactionRepository.findByTransactionId(transactionId);
+
+            TransactionVersionModel auditLog = new TransactionVersionModel();
+            auditLog.setTransaction(existingTransaction);
+            auditLog.setAmount(existingTransaction.getAmount());
+            auditLog.setQuantity(existingTransaction.getQuantity());
+            auditLog.setTotal(existingTransaction.getTotal());
+            auditLog.setRemark(existingTransaction.getRemark());
+            auditLog.setOrNumber(existingTransaction.getOrNumber());
+            auditLog.setVersion(existingTransaction.getVersion());
+            auditLog.setTransactionDate(existingTransaction.getTransactionDate());
+            auditLog.setChangeTime(LocalDate.now().atStartOfDay());
+
+            existingTransaction.setAmount(updatedTransaction.getAmount());
+            existingTransaction.setQuantity(updatedTransaction.getQuantity());
+            existingTransaction.setTotal(updatedTransaction.getTotal());
+            existingTransaction.setRemark(updatedTransaction.getRemark());
+            existingTransaction.setOrNumber(updatedTransaction.getOrNumber());
+            existingTransaction.setTransactionDate(updatedTransaction.getTransactionDate());
+//            logger.info("Before: {}", existingTransaction.getVersion());
+//            System.out.println("Before:"+existingTransaction.getVersion());
+            transactionRepository.save(existingTransaction);
+
+//            System.out.println("After:"+existingTransaction.getVersion());
+            transactionVersionRepository.save(auditLog);
+
+            return "Success";
+        } catch (Exception e) {
+            // Log the exception or handle it based on your application's needs
+            return "Error: " + e.getMessage();
+        }
+    }
+
+
+
+
 
     public List<TotalCashflowModel> findTotalCashflow() {
         return transactionRepository.findTotalCashflow();
@@ -161,5 +207,17 @@ public List<TransactionModel> findAllTransactionsWithBalance() {
     }
 
 
+//    public String updateLogsTransaction(String transactionId) {
+//        TransactionVersionModel existingTransaction = transactionVersionRepository.findByTransactionId(transactionId);
+//        if (existingTransaction!=null){
+//            return "Success";
+//        }
+//        else{
+//            return "Error";
+//        }
+//    }
 
+    public List<TransactionModel> getAllTransactionsWithVersions() {
+        return transactionRepository.findAllWithTransactionVersion();
+    }
 }

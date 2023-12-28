@@ -15,9 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/transaction")
-@CrossOrigin(origins = { "http://localhost:5173" },
-        exposedHeaders = {"Access-Control-Allow-Origin: http://localhost:5173","Access-Control-Allow-Credentials","Access-Control-Allow-Method","Access-Control-Allow-Headers"},
-        allowedHeaders ={ "*","Access-Control-Allow-Credentials:true"}, allowCredentials = "true")
 public class TransactionController {
     @Autowired
     private TransactionService transactionService;
@@ -26,11 +23,13 @@ public class TransactionController {
     @Autowired
     private UserService userService;
 
-    @PostMapping(value = "/save", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping("/save")
     @PreAuthorize("hasAuthority ('TREASURER')")
-    public ResponseEntity save( TransactionModel transactionModel){
+    public ResponseEntity save(@RequestBody TransactionModel transactionModel){
         return new ResponseEntity<>(transactionService.save(transactionModel), HttpStatus.OK);
     }
+
+
     @GetMapping("/igpList")
     public ResponseEntity<List<TransactionModel>> getAllIgpTransactions() {
         try {
@@ -91,6 +90,28 @@ public class TransactionController {
     public List<TransactionModel> getAllTransaction() {
         return transactionService.findAllTransactionsWithBalance();
     }
+
+
+    @PutMapping("/update/{transactionId}")
+    public ResponseEntity<String> updateTransaction(@PathVariable String transactionId, @RequestBody TransactionModel updatedTransaction) {
+        try {
+            String result = transactionService.updateTransaction(transactionId, updatedTransaction);
+            if ("Success".equals(result)) {
+                return new ResponseEntity<>("Success", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error updating transaction: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/updateLogs")
+    public List<TransactionModel> getAllTransactionsWithVersions() {
+        return  transactionService.getAllTransactionsWithVersions();
+
+
+    }
+
 //    @GetMapping("/exportExcel")
 //    public ResponseEntity<Resource> exportTransactionsToExcel() {
 //        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");

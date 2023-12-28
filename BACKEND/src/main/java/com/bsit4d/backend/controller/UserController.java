@@ -33,9 +33,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
-@CrossOrigin(origins = { "http://localhost:5173" },
-        exposedHeaders = {"Access-Control-Allow-Origin: http://localhost:5173","Access-Control-Allow-Credentials","Access-Control-Allow-Method","Access-Control-Allow-Headers"},
-        allowedHeaders ={ "*","Access-Control-Allow-Credentials:true"}, allowCredentials = "true")
 public class UserController {
     @Autowired
     private UserService userService;

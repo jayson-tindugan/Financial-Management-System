@@ -2,7 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+    createBrowserRouter,
+    RouterProvider,
+    Navigate,
+    useNavigate,
+} from "react-router-dom";
+import { LoginDetails } from "./components/reusable-components/ReusableComponents.js";
 import {
     Forgot,
     Dashboard,
@@ -10,9 +16,50 @@ import {
     Transaction,
     Report,
     Profile,
+    PageNotFound,
+    BadRequest,
 } from "./pages/index.js";
 
+const allowedRoles = {
+    "/Dashboard": ["ADMIN", "TREASURER", "AUDITOR", "OTHER_OFFICER"],
+    "/Officer": ["ADMIN"],
+    "/Transaction": ["TREASURER"],
+    "/Report": ["AUDITOR"],
+    "/Profile": ["ADMIN", "TREASURER", "AUDITOR", "OTHER_OFFICER"],
+};
+
+const ProtectedRoute = ({ element, path }) => {
+    const accountDetails = LoginDetails(); // Fetch the user's role here
+    const navigate = useNavigate();
+
+    // Check if the endpoint exists in allowedRoles
+    if (!allowedRoles[path]) {
+        // If the endpoint doesn't exist, redirect to Page Not Found
+        navigate("/PageNotFound");
+        return null; // Return null or a loading component if needed
+    }
+
+    // Check if the user's role is allowed for the current route
+    if (!allowedRoles[path].includes(accountDetails.role)) {
+        // If the user's role isn't allowed for this endpoint, redirect to Bad Request
+        navigate("/BadRequest");
+        return null; // Return null or a loading component if needed
+    }
+
+    return element;
+};
+
 const router = createBrowserRouter([
+    // Bad Request route
+    {
+        path: "/BadRequest",
+        element: <BadRequest />,
+    },
+    // Page not found route
+    {
+        path: "*",
+        element: <PageNotFound />,
+    },
     // Login / index route
     {
         path: "/",
@@ -28,27 +75,29 @@ const router = createBrowserRouter([
     // dashboard module
     {
         path: "/Dashboard",
-        element: <Dashboard />,
+        element: <ProtectedRoute element={<Dashboard />} path="/Dashboard" />,
     },
     // officer record module
     {
         path: "/Officer",
-        element: <Officer />,
+        element: <ProtectedRoute element={<Officer />} path="/Officer" />,
     },
     // transaction module
     {
         path: "/Transaction",
-        element: <Transaction />,
+        element: (
+            <ProtectedRoute element={<Transaction />} path="/Transaction" />
+        ),
     },
     // report module
     {
         path: "/Report",
-        element: <Report />,
+        element: <ProtectedRoute element={<Report />} path="/Report" />,
     },
     // profile module
     {
         path: "/Profile",
-        element: <Profile />,
+        element: <ProtectedRoute element={<Profile />} path="/Profile" />,
     },
 ]);
 
