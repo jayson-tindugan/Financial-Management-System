@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Header, Sidebar, MainGreetings } from "../components/Components.js";
-import { Container } from "react-bootstrap";
+import { Button, Form, Table, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/css/global.css";
 import OfficerTable from "../components/officerTable.jsx";
@@ -25,9 +25,9 @@ function Officer() {
             >
                 <MainGreetings />
                 <Container>
-                    <h4 className="d-flex justify-content-center">
+                    {/* <h4 className="d-flex justify-content-center">
                         Officer List
-                    </h4>
+                    </h4> */}
                     <div className="d-flex justify-content-end mx-3">
                         <OfficerAddModal />
                     </div>
