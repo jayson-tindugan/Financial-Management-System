@@ -187,6 +187,7 @@ const TransactionTable = () => {
         name: 'Total', 
         selector: 'total', 
         sortable: true,
+        minWidth: '130px',
         cell: (row) => (
           <span>
             ₱ {Number(row.total).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}

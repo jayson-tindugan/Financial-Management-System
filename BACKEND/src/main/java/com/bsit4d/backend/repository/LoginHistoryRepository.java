@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface LoginHistoryRepository extends JpaRepository<LoginHistoryModel, Long> {
+
     List<LoginHistoryModel> findByIdNumber(Long idNumber);
 
 }

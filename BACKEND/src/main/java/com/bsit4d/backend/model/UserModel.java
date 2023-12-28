@@ -30,8 +30,9 @@ public class UserModel{
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime dateAdded;
-
+    @Column(columnDefinition = "ACTIVE", updatable = true)
     private String status;
     private String role;
     private String password;
+    private String generatedPassword;
 }
