@@ -15,7 +15,7 @@ const OfficerAddModal = ({ onAddOfficer }) => {
       middleName: '',
       lastName: '',
       role: '',
-      status:'ACTIVE',
+      status:'',
       password: '',
       generatedPassword: ' ',
     });
@@ -33,6 +33,7 @@ const OfficerAddModal = ({ onAddOfficer }) => {
         ...prevFormData,
         password: generatedPassword,
         generatedPassword: generatedPassword,
+        status: 'ACTIVE'
       }));
     };
   
@@ -60,13 +61,10 @@ const OfficerAddModal = ({ onAddOfficer }) => {
             console.log('Officer added successfully');
             handleClose();
             setShowSuccessModal(true);
-            onAddOfficer(); // Trigger the callback to handle any additional actions after a successful addition
+            onAddOfficer();
           }
           if (response.data === 'ID number already exists') {
             alert('ID number already exists');
-          }
-           else {
-            console.error('Unexpected response:', response.data);
           }
         } catch (error) {
           console.error('Error adding officer:', error);
@@ -82,9 +80,8 @@ const OfficerAddModal = ({ onAddOfficer }) => {
           middleName: '',
           lastName: '',
           role: '',
-          status: 'ACTIVE',
           password: '',
-          generatedPassword: ' ',
+          generatedPassword: '',
         });
       };
     
@@ -171,6 +168,7 @@ const OfficerAddModal = ({ onAddOfficer }) => {
                   type="hidden"
                   value={formData.generatedPassword}
                 />
+                
                 <Button variant="outline-secondary" onClick={handleTogglePasswordVisibility}>
                   {passwordVisible ? 'Hide' : 'Show'}
                 </Button>
@@ -203,8 +201,6 @@ const OfficerAddModal = ({ onAddOfficer }) => {
               Success <Icon.Check2Circle />
             </h3>
             <p className="d-flex justify-content-center">Officer added successfully.</p>
-            <p className="d-flex justify-content-center">ID Number: {formData.idNumber}</p>
-            <p className="d-flex justify-content-center">Temporary Password: {formData.generatedPassword}</p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="success" onClick={handleSuccessModalClose}>
