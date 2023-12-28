@@ -1,9 +1,9 @@
 /* IMPORTING FILES FOR ROUTING */
-import { default as Dashboard } from "./dashboard.jsx";
-import { default as Officer } from "./officer.jsx";
-import { default as Transaction } from "./transaction.jsx";
-import { default as Report } from "./report.jsx";
-import { default as Profile } from "./profile.jsx";
+import { default as Dashboard } from "./dashboard/dashboard.jsx";
+import { default as Officer } from "./officermodule/officer.jsx";
+import { default as Transaction } from "./transactionmodule/transaction.jsx";
+import { default as Report } from "./reportmodule/report.jsx";
+import { default as Profile } from "./profile/profile.jsx";
 import { default as PageNotFound } from "./PageNotFound.jsx";
 import { default as BadRequest } from "./BadRequest.jsx";
 
