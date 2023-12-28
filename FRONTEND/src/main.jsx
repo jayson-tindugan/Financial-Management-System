@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { LoginDetails } from "./components/reusable-components/ReusableComponents.js";
 import {
+    Forgot,
     Dashboard,
     Officer,
     Transaction,
@@ -64,6 +65,13 @@ const router = createBrowserRouter([
         path: "/",
         element: <App />,
     },
+
+    // Forgot / index route
+    {
+        path: "/Forgot",
+        element: <Forgot />,
+    },
+
     // dashboard module
     {
         path: "/Dashboard",

@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import BITS_LOGO from "../../assets/img/BITS_LOGO.png";
 import * as Icon from "react-bootstrap-icons";
 
-function Login() {
+function Forgot() {
     const isAuthenticated = session();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -107,7 +107,7 @@ function Login() {
                 <div className="Login-Card">
                     <form action="/Dashboard" method="POST">
                         <div className="Title-Header">
-                            <h3>Login</h3>
+                            <h3>Forgot Password</h3>
                             <hr />
                         </div>
                         {errorMessage && (
@@ -124,13 +124,14 @@ function Login() {
                             />
                         </div>
                         <div className="loginUserInput">
-                            <label htmlFor="password">Password:</label>
+                            <label htmlFor="password">New Password:</label>
                             <div className="password-input-container">
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     id="password"
                                     value={password}
                                     onChange={handleInputChange}
+                                    minLength={8}
                                 />
                                 <div
                                     className="showPassword"
@@ -158,13 +159,56 @@ function Login() {
                                 </div>
                             </div>
                         </div>
-                        <div className="forgotWrapper">
-                            <a href="/Forgot">Forgot Password?</a>
+
+                        <div className="loginUserInput">
+                            <label htmlFor="password">Confirm Password:</label>
+                            <div className="password-input-container">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    id="password"
+                                    value={password}
+                                    onChange={handleInputChange}
+                                    
+                                />
+                                <div
+                                    className="showPassword"
+                                    onClick={togglePasswordVisibility}
+                                >
+                                    {showPassword ? (
+                                        <Icon.Eye
+                                            className="sidebar-icons open pointer"
+                                            color="black"
+                                            style={{
+                                                width: "20px",
+                                                height: "20px",
+                                            }}
+                                        />
+                                    ) : (
+                                        <Icon.EyeSlash
+                                            className="sidebar-icons close pointer"
+                                            color="#716868"
+                                            style={{
+                                                width: "20px",
+                                                height: "20px",
+                                            }}
+                                        />
+                                    )}
+                                </div>
+                            </div>
                         </div>
+
+                        
                         <div className="btnWrapper">
                             <div to="/Dashboard" className="Link">
                                 <button onClick={login} name="login">
-                                    Login
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                        <div className="btnWrapper">
+                            <div to="/Dashboard" className="Link">
+                                <button onClick={login} name="login" >
+                                    Back
                                 </button>
                             </div>
                         </div>
@@ -176,4 +220,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Forgot;
