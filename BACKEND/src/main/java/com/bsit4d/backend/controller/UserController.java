@@ -69,7 +69,6 @@ public class UserController {
             return ResponseEntity.ok("Authentication failed: " + e.getMessage());
         }
     }
-    @CrossOrigin(origins = { "http://localhost:5173" }, allowedHeaders = "*", allowCredentials = "true")
     @GetMapping("/accountDetails")
     public ResponseEntity<Object> getMyDetails(){
         return ResponseEntity.ok(userRepository.findByIdNumber(Long.valueOf(userService.getLoggedInUserDetails().getUsername())));
@@ -115,6 +114,11 @@ public class UserController {
         }
     }
 
+    @GetMapping("/officerCount")
+    public ResponseEntity<Long> countUsersExcludingAdmin() {
+        long count = userService.countUsersExcludingAdmin();
+        return ResponseEntity.ok(count);
+    }
 
 
 }

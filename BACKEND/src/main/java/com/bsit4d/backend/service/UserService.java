@@ -64,7 +64,9 @@ public class UserService implements UserDetailsService {
         }
     }
 
-
+    public Long countUsersExcludingAdmin() {
+        return userRepository.countByRoleIsNotAndStatus("ADMIN","ACTIVE");
+    }
 
     public String registerUser(UserModel userModel) {
         try {

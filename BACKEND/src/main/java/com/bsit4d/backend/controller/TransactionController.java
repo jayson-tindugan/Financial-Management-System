@@ -18,8 +18,7 @@ import java.util.List;
 public class TransactionController {
     @Autowired
     private TransactionService transactionService;
-//    @Autowired
-//    private ExcelTransactionService excelTransactionService;
+
     @Autowired
     private UserService userService;
 
@@ -78,14 +77,6 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.getMonthlyIgp());
     }
 
-//    @GetMapping("/monthlyDonation")
-//    public List<MonthlyDonationModel> getMonthlyDonation() {
-//        return transactionService.findMonthlyDonation();
-//    }
-//    @GetMapping("/monthlyIgp")
-//    public List<MonthlyIgpModel> getMonthlyIgp() {
-//        return transactionService.findMonthlyIgp();
-//    }
     @GetMapping("/fetchAll")
     public List<TransactionModel> getAllTransaction() {
         return transactionService.findAllTransactionsWithBalance();
@@ -108,9 +99,8 @@ public class TransactionController {
     @GetMapping("/updateLogs")
     public List<TransactionModel> getAllTransactionsWithVersions() {
         return  transactionService.getAllTransactionsWithVersions();
-
-
     }
+
 
 //    @GetMapping("/exportExcel")
 //    public ResponseEntity<Resource> exportTransactionsToExcel() {

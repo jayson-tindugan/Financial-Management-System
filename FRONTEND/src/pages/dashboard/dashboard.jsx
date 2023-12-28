@@ -1,5 +1,5 @@
 // Userdashboard.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Header,
     Sidebar,
@@ -13,13 +13,26 @@ import MonthlyIgpChart from "../../components/monthlyIgpChart.jsx";
 import * as Icon from "react-bootstrap-icons";
 import "../../assets/css/global.css";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-
+import LoginHistory from "../../components/loginHistory.jsx";
+import OfficerCount from "../../components/officerCount.jsx";
+import { getBalanceCounts} from "../../components/balanceCount.jsx";
 function Userdashboard() {
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
     const toggleSidebar = () => {
         setIsSidebarVisible(!isSidebarVisible);
     };
+
+    const [count, setCounts] = useState({ collectionCount: 0, donationCount: 0, igpCount: 0 });
+    useEffect(() => {
+      const fetchData = async () => {
+        const countsData = await getBalanceCounts();
+        setCounts(countsData);
+      };
+  
+      fetchData();
+    }, []);
+
     return (
         <div>
             <Header toggleSidebar={toggleSidebar} />
@@ -52,11 +65,11 @@ function Userdashboard() {
                                     <div className="card-icon">
                                         <Icon.PeopleFill
                                             width={50}
-                                            height={70}
+                                            height={50}
                                         />
                                     </div>
                                     <div className="count">
-                                        <h2>10</h2>
+                                        <h3><OfficerCount/></h3>
                                     </div>
                                 </div>
                             </div>
@@ -67,11 +80,11 @@ function Userdashboard() {
                                     <div className="card-icon">
                                         <Icon.EnvelopeFill
                                             width={50}
-                                            height={70}
+                                            height={50}
                                         />
                                     </div>
                                     <div className="count">
-                                        <h2>&#x20B1;3000</h2>
+                                        <h3>&#x20B1; {count.donationCount}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -81,12 +94,12 @@ function Userdashboard() {
                                 <div className="card-counter">
                                     <div className="card-icon">
                                         <Icon.CurrencyExchange
-                                            width={60}
-                                            height={70}
+                                            width={50}
+                                            height={50}
                                         />
                                     </div>
                                     <div className="count">
-                                        <h2>&#x20B1;6000</h2>
+                                        <h3>&#x20B1;  {count.collectionCount}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -97,11 +110,11 @@ function Userdashboard() {
                                     <div className="card-icon">
                                         <Icon.ShopWindow
                                             width={50}
-                                            height={70}
+                                            height={50}
                                         />
                                     </div>
                                     <div className="count">
-                                        <h2>&#x20B1;9000</h2>
+                                        <h3>&#x20B1;  {count.igpCount}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -109,6 +122,18 @@ function Userdashboard() {
                     </div>
                 </div>
                 <br />
+                <Row className="my-3">
+                    <Col sm={6}>
+                        <div className="rounded-2 border  p-1 shadow-sm">
+                            <TotalCashflowChart />
+                        </div>
+                    </Col>
+                    <Col sm={6}>
+                        <div className="rounded-2 border  p-1 shadow-sm">
+                            <LoginHistory />
+                        </div>
+                    </Col>
+                </Row>
                 <Row className="my-3">
                     <Col sm={4}>
                         <div
@@ -135,13 +160,7 @@ function Userdashboard() {
                         </div>
                     </Col>
                 </Row>
-                <Row className="my-4">
-                    <Col sm={6}>
-                        <div className="rounded-2 border  p-1 shadow-sm">
-                            <TotalCashflowChart />
-                        </div>
-                    </Col>
-                </Row>
+                
             </div>
             <Sidebar isSidebarVisible={isSidebarVisible} />
         </div>
