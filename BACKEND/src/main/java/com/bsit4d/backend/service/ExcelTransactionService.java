@@ -85,16 +85,16 @@
 //        // Set the 'balance' value in the appropriate column based on the allocation type
 //        switch (allocationType) {
 //            case "COLLECTION":
-//                row.createCell(5).setCellValue(transaction.getCollectionBalance());
+//                row.createCell(5).setCellValue(transaction.getBalance());
 //                break;
 //            case "IGP":
-//                row.createCell(5).setCellValue(transaction.getIgpBalance());
+//                row.createCell(5).setCellValue(transaction.getBalance());
 //                break;
 //            case "DONATION":
-//                row.createCell(5).setCellValue(transaction.getDonationBalance());
+//                row.createCell(5).setCellValue(transaction.getBalance());
 //                break;
 //            default:
-//                row.createCell(5).setCellValue(transaction.getDonationBalance()); // Default or handle additional cases as needed
+//                row.createCell(5).setCellValue(transaction.getBalance()); // Default or handle additional cases as needed
 //        }
 //    }
 //

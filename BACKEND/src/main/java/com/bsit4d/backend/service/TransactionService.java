@@ -6,10 +6,15 @@ import com.bsit4d.backend.repository.TransactionRepository;
 import com.bsit4d.backend.repository.TransactionVersionRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -76,9 +81,6 @@ public class TransactionService {
     }
 
 
-
-
-
     public List<TotalCashflowModel> findTotalCashflow() {
         return transactionRepository.findTotalCashflow();
     }
@@ -91,13 +93,14 @@ public class TransactionService {
         for (MonthlyCashflowModel transactionModel : transactionModels) {
             Double cashInflows = 0.0;
             Double cashOutflows = 0.0;
-                cashInflows = transactionModel.getCashOnHands();
-                balance += cashInflows - cashOutflows;
+            cashInflows = transactionModel.getCashOnHands();
+            balance += cashInflows - cashOutflows;
             transactionModel.setCashOnHands(balance);
         }
 
         return transactionModels;
     }
+
     public List<MonthlyCashflowModel> getMonthlyDonation() {
         List<MonthlyCashflowModel> transactionModels = transactionRepository.getMonthlyDonation();
         double balance = 0.0;
@@ -135,40 +138,70 @@ public class TransactionService {
 //    public List<MonthlyIgpModel> findMonthlyIgp() {
 //        return transactionRepository.findMonthlyIgp();
 //    }
-public List<TransactionModel> findAllTransactionsWithBalance() {
-    List<TransactionModel> transactionModels = transactionRepository.findAllByAllocationTypeInOrderByTransactionDateDesc(
-            List.of( "DONATION","COLLECTION", "IGP"));
+    public List<TransactionModel> findAllTransactionsWithBalance() {
+        List<TransactionModel> transactionModels = transactionRepository.findAllByAllocationTypeInOrderByTransactionDateDesc(
+                List.of("DONATION", "COLLECTION", "IGP"));
 
-    double balanceCollection = 0.0;
-    double balanceDonation = 0.0;
-    double balanceIGP = 0.0;
+        double balanceCollection = 0.0;
+        double balanceDonation = 0.0;
+        double balanceIGP = 0.0;
 
-    for (TransactionModel transactionModel : transactionModels) {
-        Double cashInflows = 0.0;
-        Double cashOutflows = 0.0;
+        for (TransactionModel transactionModel : transactionModels) {
+            Double cashInflows = 0.0;
+            Double cashOutflows = 0.0;
 
-        if ("INFLOW".equals(transactionModel.getTransactionType())) {
-            cashInflows = transactionModel.getTotal();
-        } else if ("OUTFLOW".equals(transactionModel.getTransactionType())) {
-            cashOutflows = transactionModel.getTotal();
+            if ("INFLOW".equals(transactionModel.getTransactionType())) {
+                cashInflows = transactionModel.getTotal();
+            } else if ("OUTFLOW".equals(transactionModel.getTransactionType())) {
+                cashOutflows = transactionModel.getTotal();
+            }
+
+            if ("COLLECTION".equals(transactionModel.getAllocationType())) {
+                balanceCollection += cashInflows - cashOutflows;
+            } else if ("DONATION".equals(transactionModel.getAllocationType())) {
+                balanceDonation += cashInflows - cashOutflows;
+            } else if ("IGP".equals(transactionModel.getAllocationType())) {
+                balanceIGP += cashInflows - cashOutflows;
+            }
+
+            transactionModel.setBalance(balanceCollection, balanceDonation, balanceIGP);
         }
-
-        if ("COLLECTION".equals(transactionModel.getAllocationType())) {
-            balanceCollection += cashInflows - cashOutflows;
-        } else if ("DONATION".equals(transactionModel.getAllocationType())) {
-            balanceDonation += cashInflows - cashOutflows;
-        } else if ("IGP".equals(transactionModel.getAllocationType())) {
-            balanceIGP += cashInflows - cashOutflows;
-        }
-
-        transactionModel.setBalance(balanceCollection, balanceDonation, balanceIGP);
+        Collections.reverse(transactionModels);
+        return transactionModels;
     }
-    Collections.reverse(transactionModels);
-    return transactionModels;
-}
 
+    public List<TransactionModel> findAllTransactionsDateRange(LocalDate startDate, LocalDate endDate) {
+        List<TransactionModel> transactionModels = transactionRepository
+                .findAllByAllocationTypeInAndTransactionDateBetweenOrderByTransactionDate(
+                        List.of("DONATION", "COLLECTION", "IGP"), startDate, endDate);
 
+        double balanceCollection = 0.0;
+        double balanceDonation = 0.0;
+        double balanceIGP = 0.0;
 
+        for (TransactionModel transactionModel : transactionModels) {
+            Double cashInflows = 0.0;
+            Double cashOutflows = 0.0;
+
+            if ("INFLOW".equals(transactionModel.getTransactionType())) {
+                cashInflows = transactionModel.getTotal();
+            } else if ("OUTFLOW".equals(transactionModel.getTransactionType())) {
+                cashOutflows = transactionModel.getTotal();
+            }
+
+            if ("COLLECTION".equals(transactionModel.getAllocationType())) {
+                balanceCollection += cashInflows - cashOutflows;
+            } else if ("DONATION".equals(transactionModel.getAllocationType())) {
+                balanceDonation += cashInflows - cashOutflows;
+            } else if ("IGP".equals(transactionModel.getAllocationType())) {
+                balanceIGP += cashInflows - cashOutflows;
+            }
+
+            transactionModel.setBalance(balanceCollection, balanceDonation, balanceIGP);
+        }
+
+        return transactionModels;
+    }
 
 
     public List<TransactionModel> findAllIgpTransactions() {
@@ -220,4 +253,64 @@ public List<TransactionModel> findAllTransactionsWithBalance() {
     public List<TransactionModel> getAllTransactionsWithVersions() {
         return transactionRepository.findAllWithTransactionVersion();
     }
+
+
+    public byte[] generateExcel(List<TransactionModel> transactions) throws IOException {
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Transactions");
+
+            CellStyle headerStyle = workbook.createCellStyle();
+            Font headerFont = workbook.createFont();
+            headerFont.setBold(true);
+            headerStyle.setFont(headerFont);
+
+            Row headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("Transaction ID");
+            headerRow.createCell(1).setCellValue("Transaction Date");
+            headerRow.createCell(2).setCellValue("Type");
+            headerRow.createCell(3).setCellValue("Amount");
+            headerRow.createCell(4).setCellValue("Quantity");
+            headerRow.createCell(5).setCellValue("Total");
+            headerRow.createCell(6).setCellValue("Balance");
+            headerRow.createCell(7).setCellValue("Particular");
+            headerRow.createCell(8).setCellValue("OR Number");
+            headerRow.createCell(9).setCellValue("Remark");
+
+
+            for (int i = 0; i <= 9; i++) {
+                headerRow.getCell(i).setCellStyle(headerStyle);
+            }
+
+            int rowNum = 1;
+            for (TransactionModel transaction : transactions) {
+                Row row = sheet.createRow(rowNum++);
+                row.createCell(0).setCellValue(transaction.getTransactionId());
+                row.createCell(1).setCellValue(transaction.getTransactionDate().toString());
+                row.createCell(2).setCellValue(transaction.getAllocationType());
+                row.createCell(3).setCellValue(transaction.getAmount());
+                row.createCell(4).setCellValue(transaction.getQuantity());
+                row.createCell(5).setCellValue(transaction.getTotal());
+                row.createCell(6).setCellValue(transaction.getBalance());
+                row.createCell(7).setCellValue(transaction.getParticular());
+                row.createCell(8).setCellValue(transaction.getOrNumber());
+                row.createCell(9).setCellValue(transaction.getRemark());
+            }
+
+            // Auto-resize columns
+            for (int i = 0; i <= 9; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+                workbook.write(outputStream);
+                return outputStream.toByteArray();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+
 }

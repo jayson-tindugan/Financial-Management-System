@@ -6,8 +6,15 @@ import com.bsit4d.backend.model.LoginModel;
 import com.bsit4d.backend.model.UserModel;
 import com.bsit4d.backend.repository.LoginHistoryRepository;
 import com.bsit4d.backend.repository.UserRepository;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Multipart;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +23,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -113,7 +122,9 @@ public class UserService implements UserDetailsService {
 
     public List<LoginHistoryModel> findLoginHistory() {
         try {
-            return loginHistoryRepository.findByIdNumber(Long.valueOf(getLoggedInUserDetails().getUsername()));
+            List<LoginHistoryModel> loginHistoryList = loginHistoryRepository.findByIdNumber(Long.valueOf(getLoggedInUserDetails().getUsername()));
+            Collections.reverse(loginHistoryList);
+            return loginHistoryList;
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error retrieving login history", e);
@@ -130,5 +141,28 @@ public class UserService implements UserDetailsService {
         }
     }
 
+
+
+    @Autowired
+    private JavaMailSender javaMailSender;
+    public void sendEmail(String email, String subject, String body) {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+
+
+        try {
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+            helper.setFrom("clydesolas01@gmail.com", "BITS Financial Management System");
+            helper.setTo(email);
+            helper.setSubject(subject);
+            helper.setText(body,true);
+
+
+            javaMailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            throw new RuntimeException("Failed to send email", e);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

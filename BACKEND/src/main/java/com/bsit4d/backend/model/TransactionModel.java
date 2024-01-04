@@ -48,7 +48,7 @@ public class TransactionModel {
     @OrderBy("transactionDate ASC")
     private LocalDate transactionDate;
 
-    @OneToMany(mappedBy = "transaction", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH },fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "transaction", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
     @JsonManagedReference
     private List<TransactionVersionModel> transactionVersion;
     @Version

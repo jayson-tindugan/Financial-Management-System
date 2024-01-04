@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -36,44 +37,10 @@ public interface TransactionRepository extends JpaRepository<TransactionModel, L
             "GROUP BY t.allocationType")
     List<TotalCashflowModel> findTotalCashflow();
 
-//    @Query("")
-//    List<MonthlyCollectionModel> findMonthlyCollection();
-//
-//    @Query("")
-//    List<MonthlyDonationModel> findMonthlyDonation();
-//
-//    @Query("")
-//    List<MonthlyIgpModel> findMonthlyIgp();
-//
-//    @Query("SELECT\n" +
-//            "   NEW com.bsit4d.backend.model.FetchAllTransactionModel(\n" +
-//            "       t,\n" +
-//            "       CASE \n" +
-//            "           WHEN t.allocationType = 'COLLECTION' THEN \n" +
-//            "               SUM(CASE WHEN t.transactionType = 'INFLOW' THEN t.total ELSE 0 END) OVER (ORDER BY t.transactionDate) \n" +
-//            "           ELSE 0 \n" +
-//            "       END AS cashOnHandsCollection,\n" +
-//            "       CASE \n" +
-//            "           WHEN t.allocationType = 'DONATION' THEN \n" +
-//            "               SUM(CASE WHEN t.transactionType = 'INFLOW' THEN t.total ELSE 0 END) OVER (ORDER BY t.transactionDate) \n" +
-//            "           ELSE 0 \n" +
-//            "       END AS cashOnHandsDonation,\n" +
-//            "       CASE \n" +
-//            "           WHEN t.allocationType = 'IGP' THEN \n" +
-//            "               SUM(CASE WHEN t.transactionType = 'INFLOW' THEN t.total ELSE 0 END) OVER (ORDER BY t.transactionDate) \n" +
-//            "           ELSE 0 \n" +
-//            "       END AS cashOnHandsIGP\n" +
-//            "   )\n" +
-//            "FROM\n" +
-//            "   com.bsit4d.backend.model.TransactionModel t \n" +
-//            "WHERE\n" +
-//            "   t.allocationType IN ('COLLECTION', 'DONATION', 'IGP')\n" +
-//            "ORDER BY\n" +
-//            "   t.transactionDate DESC\n")
-//    List<FetchAllTransactionModel> findAllTransactions();
-@Query(value = "SELECT t FROM TransactionModel t LEFT JOIN FETCH t.transactionVersion tv ORDER BY t.transactionDate ASC, tv.changeTime DESC")
-List<TransactionModel> findAllByAllocationTypeInOrderByTransactionDateDesc(List<String> allocationTypes);
+   @Query(value = "SELECT t FROM TransactionModel t LEFT JOIN FETCH t.transactionVersion tv ORDER BY t.transactionDate ASC, tv.changeTime DESC")
+    List<TransactionModel> findAllByAllocationTypeInOrderByTransactionDateDesc(List<String> allocationTypes);
 
+    List<TransactionModel> findAllByAllocationTypeInAndTransactionDateBetweenOrderByTransactionDate(List<String> allocationTypes, LocalDate startDate, LocalDate endDate);
     @Query(value = "SELECT NEW com.bsit4d.backend.model.MonthlyCashflowModel(MONTHNAME(t.transactionDate) AS month, \n" +
             "            SUM(CASE WHEN t.transactionType = 'Inflow' THEN t.total ELSE 0 END) AS cashInflows, \n" +
             "            SUM(CASE WHEN t.transactionType = 'Outflow' THEN t.total ELSE 0 END) AS cashOutflows," +

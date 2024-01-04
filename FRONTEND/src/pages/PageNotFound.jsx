@@ -16,10 +16,10 @@ function PageNotFound() {
             </p>
             <div className="bad-request-btn-wrapper d-flex justify-content-center">
                 <button
-                    style={{ width: "100px" }}
+                    style={{ width: "200px" }}
                     onClick={redirectToDashboard}
                 >
-                    Go Back
+                    Back to Dashboard
                 </button>
             </div>
         </div>
