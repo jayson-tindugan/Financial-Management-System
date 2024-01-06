@@ -143,26 +143,6 @@ public class UserService implements UserDetailsService {
 
 
 
-    @Autowired
-    private JavaMailSender javaMailSender;
-    public void sendEmail(String email, String subject, String body) {
-        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
-
-        try {
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-            helper.setFrom("clydesolas01@gmail.com", "BITS Financial Management System");
-            helper.setTo(email);
-            helper.setSubject(subject);
-            helper.setText(body,true);
-
-
-            javaMailSender.send(mimeMessage);
-        } catch (MessagingException e) {
-            throw new RuntimeException("Failed to send email", e);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 }
